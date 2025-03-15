@@ -105,7 +105,17 @@ class ApiClient {
     AppLogs.showErrorLogs("${error.type}");
     AppLogs.showErrorLogs("${error.message}");
 
-    var serverMessage = error.response?.data['message'] ?? error.message;
+   // var serverMessage = error.response?.data['message'] ?? error.message;
+
+    var serverMessage = error.message??""; // Default to error.message
+
+    if (error.response != null && error.response!.data != null) {
+      if (error.response!.data is Map<String, dynamic>) {
+        // If error.response.data is a Map, try to extract the message
+        serverMessage = (error.response!.data as Map<String, dynamic>)['message'] ?? error.message;
+      }
+    }
+
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
         serverMessage =  serverMessage.isNotEmpty?serverMessage : 'Connection timeout with API server';
