@@ -130,7 +130,7 @@ class ApiClient {
         break;
 
       case DioExceptionType.badResponse:
-        serverMessage =  serverMessage.isNotEmpty?serverMessage : 'Received invalid status code: ${error.response?.statusCode}';
+        serverMessage =  serverMessage.isNotEmpty?error.response?.statusCode==404?"Server Not Found":serverMessage : 'Received invalid status code: ${error.response?.statusCode}';
         break;
       case DioExceptionType.cancel:
         serverMessage =  serverMessage.isNotEmpty?serverMessage : 'Request to API server was cancelled';
