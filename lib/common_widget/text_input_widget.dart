@@ -92,6 +92,7 @@ class CustomTextFormField extends StatelessWidget {
                 child: suffixWidget,
               )
               :null,
+          errorMaxLines: 5
         ),
       ),
     );
