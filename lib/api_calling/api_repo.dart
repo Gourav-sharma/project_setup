@@ -9,8 +9,8 @@ class ApiRepository {
   static final Map<String, dynamic> headers = {};
   static late ApiClient _apiClient;
 
-  static void init(String apiUrl, {Map<String, dynamic>? appHeaders}) {
-    headers.addAll(appHeaders ?? {});
+  static void init({required String apiUrl, required Map<String, dynamic> appHeaders}) {
+    headers.addAll(appHeaders);
     ApiRepository().apiUrl = apiUrl;
     _apiClient = ApiClient(baseUrl: apiUrl, headers: headers);
   }

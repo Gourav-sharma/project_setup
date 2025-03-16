@@ -11,7 +11,7 @@ import 'package:get_storage/get_storage.dart';
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 Future<void> main() async {
   await GetStorage.init();
-  ApiRepository.init('',);
+  ApiRepository.init(apiUrl: '', appHeaders: {});
   runApp(const MyApp());
 }
 
