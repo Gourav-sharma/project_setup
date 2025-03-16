@@ -30,7 +30,7 @@ class ApiClient {
     }
   }
 
-  Future<ApiResponse> request(
+  Future<Map<String, dynamic>> request(
       String endpoint, {
         required RequestType requestType,
         dynamic data,
@@ -88,7 +88,8 @@ class ApiClient {
 
   // Handles the response from the API.
   dynamic _handleResponse(Response response) {
-    return ApiResponse(data: response.data,message: response.data['message']);
+    return Map<String, dynamic>.from(response.data);
+   // return ApiResponse(data: response.data,message: response.data['message']);
   }
 
   String _handleError(DioException error) {

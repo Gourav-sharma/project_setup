@@ -279,40 +279,19 @@ To use the Project Setup plugin in your Flutter project, you can add it as a dep
  in your `main` method to initialize the dimensions before running the app. For example, you can use it like this:
 
 ## How to use API Calling 
-import 'package:flutter/material.dart';
-import 'api_calling/api_repo.dart';
-import 'api_calling/response_model.dart';
+### How to use API Calling
 
-void main() {
-  runApp(MyApp());
-}
+The `ApiRepository` class provides a simple way to make API calls. To use it, you need to create an instance of `ApiRepository` and then use the `apiCall` method to make the API call.
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('API Call Example'),
-        ),
-        body: Center(
-          child: ElevatedButton(
-            onPressed: () async {
-              try {
-                ApiResponse response = await ApiRepository.apiCall(
-                  '/example-endpoint',
-                  RequestType.post,
-                  data: {'key': 'value'},
-                );
-                print('Response: ${response.data}');
-              } catch (e) {
-                print('Error: $e');
-              }
-            },
-            child: Text('Make API Call'),
-          ),
-        ),
-      ),
-    );
-  }
-}
+Here is an example of how to use it:
+try{
+  final response = await ApiRepository().apiCall(
+    'endpoint',
+    RequestType.get,
+    queryParameters: {'param': 'value'},
+    headers: {'Authorization': 'Bearer <token>'},
+  );
+
+} catch (e) {
+  // error
+}   

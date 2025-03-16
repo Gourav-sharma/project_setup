@@ -11,7 +11,15 @@ import 'package:get_storage/get_storage.dart';
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 Future<void> main() async {
   await GetStorage.init();
-  ApiRepository.init('',);
+  ApiRepository.init('https://nutrakiddouat.24livehost.com/api/',
+      appHeaders:  {
+        'authorization': 'Bearer ${storage.read(SessionManagerKeys.authToken) ?? ""}',
+        'content-Type': 'application/json',
+        'UtcOffsetInSecond': "19800",
+        'AppVersion': '1',
+        'accessToken': '${storage.read(SessionManagerKeys.accessToken) ?? ""}',
+      }
+      );
   runApp(const MyApp());
 }
 

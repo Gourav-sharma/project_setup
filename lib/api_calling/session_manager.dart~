@@ -1,6 +1,6 @@
 class SessionManagerKeys {
-  static const String authToken = 'authToken';
-  static const String accessToken = 'accessToken';
+  static const String authToken = 'access_token';
+  static const String accessToken = 'access_token';
   static const String refreshToken = 'refresh_token';
   static const String isLoggedIn = 'is_logged_in';
   static const String isNotificationsEnabled = 'isNotificationsEnabled';

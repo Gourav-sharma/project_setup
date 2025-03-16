@@ -1,14 +1,18 @@
+import 'package:get_storage/get_storage.dart';
+
 import 'api_client.dart';
 import 'response_model.dart';
 
+GetStorage storage = GetStorage();
 class ApiRepository {
   late final String apiUrl;
-
+  static final Map<String, dynamic> headers = {};
   static late ApiClient _apiClient;
 
-  static void init(String apiUrl) {
+  static void init(String apiUrl, {Map<String, dynamic>? appHeaders}) {
+    headers.addAll(appHeaders ?? {});
     ApiRepository().apiUrl = apiUrl;
-    _apiClient = ApiClient(baseUrl: apiUrl);
+    _apiClient = ApiClient(baseUrl: apiUrl, headers: headers);
   }
 
 

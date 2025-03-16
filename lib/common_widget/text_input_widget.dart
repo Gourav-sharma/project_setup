@@ -21,6 +21,7 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? prefixWidget;
   final Widget? suffixWidget;
   final VoidCallback? suffixTap;
+  final TextInputType keyBoardType;
   final Function(String)? onChanged;
   final FormFieldValidator<String>? validator;
 
@@ -44,6 +45,7 @@ class CustomTextFormField extends StatelessWidget {
     this.prefixWidget,
     this.suffixWidget,
     this.suffixTap,
+    this.keyBoardType = TextInputType.text,
     this.onChanged,
     this.validator,
   });
@@ -64,11 +66,7 @@ class CustomTextFormField extends StatelessWidget {
         textAlign: TextAlign.start,
         maxLines: maxLines??1,
         autovalidateMode: AutovalidateMode.onUserInteraction,
-        inputFormatters: [
-          isPassword==true?
-          FilteringTextInputFormatter.allow(RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')):
-          FilteringTextInputFormatter.allow(RegExp('.*')),
-        ],
+        keyboardType:keyBoardType,
         decoration: InputDecoration(
           counterText: '',
           hintText: hintText,
