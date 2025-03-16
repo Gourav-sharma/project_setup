@@ -22,7 +22,7 @@ class CommonUtilMethods {
     return "";
   }
 
-  static String isPasswordValid(String password,{String? message}) {
+  static String isPasswordValid(String password,{String? message,String? passwordLFormatMessage}) {
     if(password.isEmpty){
       return passwordValidationMessage;
     }else if (password.length < 8) {
@@ -30,7 +30,7 @@ class CommonUtilMethods {
     }else if (!RegExp(
             r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
         .hasMatch(password)) {
-      return message??"Password should contain at least one uppercase letter, one lowercase letter, one number and one special character";
+      return passwordLFormatMessage??"Password should contain at least one uppercase letter, one lowercase letter, one number and one special character";
     }
     return "";
   }
