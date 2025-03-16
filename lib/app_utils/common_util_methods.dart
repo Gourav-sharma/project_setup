@@ -26,7 +26,7 @@ class CommonUtilMethods {
     if(password.isEmpty){
       return passwordValidationMessage;
     }else if (password.length < 8) {
-      return message??passwordValidationMessage;
+      return message??passwordLengthValidationMessage;
     }
     return "";
   }
