@@ -11,10 +11,15 @@ class CommonUtilMethods {
     return false;
   }
 
-  static bool isEmailValid(String email) {
-    return RegExp(
+  static String isEmailValid(String email,{String? message}) {
+    if(email.isEmpty){
+      return emailValidationMessage;
+    }else if (RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(email);
+        .hasMatch(email)) {
+      return message??emailValidationMessage2;
+    }
+    return "";
   }
 
   static bool isPasswordValid(String password) {

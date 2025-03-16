@@ -90,14 +90,8 @@ class _MyAppState extends State<MyApp> {
                     child: CustomSvgWidget(assetName: ImageResource.smsSvg),
                   ),
                   validator: (value) {
-                    if (CommonUtilMethods.isValueEmpty(
-                        value ?? "")) {
-                      return emailValidationMessage;
-                    } else if (!CommonUtilMethods
-                        .isEmailValid(value!)) {
-                      return emailValidationMessage2;
-                    }
-                    return null;
+                    return (CommonUtilMethods
+                        .isEmailValid(value!,message: emailValidationMessage2));
                   },
                 ),
               ],
