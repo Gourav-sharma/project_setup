@@ -285,51 +285,17 @@ To use the Project Setup plugin in your Flutter project, you can add it as a dep
 
 ## How to use API Calling
 
-- **Api Repository**: This provides a straightforward method for making API requests. To utilize it, instantiate `ApiRepository` and invoke the `apiCall` method as shown in the example below:
+The `ApiRepository` class provides a simple way to make API calls. To use it, you need to create an instance of `ApiRepository` and then use the `apiCall` method to make the API call.
 
-  To use the API calling feature provided by `ApiRepository`, follow the steps below:
+Here is an example of how to use it:
+try{
+  final response = await ApiRepository().apiCall(
+    'endpoint',
+    RequestType.get,
+    queryParameters: {'param': 'value'},
+    headers: {'Authorization': 'Bearer <token>'},
+  );
 
-1. **Import the necessary packages:**
-
-   Ensure you have the necessary imports at the top of your Dart file:
-
-   ```dart
-   import 'package:project_setup/api_repository.dart';
-   import 'package:flutter/material.dart';
-   ```
-
-2. **Make an API call:**
-
-   Use the `apiCall` method to make an API request. Pass the necessary parameters like endpoint, method, headers, and body.
-
-   ```dart
-   void fetchData() async {
-     try {
-       ApiResponse response = await apiRepository.apiCall(
-         endpoint,
-         data: {
-             "email": state.email,
-              "password": state.password,
-              },
-         RequestType.post
-       );
-        print('Data: ${response.data}');
-     } catch (e) {
-       print('Exception: $e');
-     }
-   }
-   ```
-
-3. **Call the `fetchData` method:**
-
-   Invoke `fetchData` in your widget or service to make the API request.
-
-   ```dart
-   @override
-   void initState() {
-     super.initState();
-     fetchData();
-   }
-   ```
-
-This example demonstrates a simple API call using the `ApiRepository`. Adjust the endpoint, method, headers, and body according to your API's requirements.
+} catch (e) {
+  // error
+}   
