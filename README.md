@@ -252,34 +252,38 @@ class LoginView extends StatelessWidget {
 To use the Project Setup plugin in your Flutter project, you can add it as a dependency in your `pubspec.yaml` file:
 
 - **Dimensions**: It provides a set of extension methods for `num` to easily get the width and height of the screen. 
- ## You can use 
- "@override
+  To initialize dimensions before running the app, use the following in your `main` method:
+
+  ```dart
+  @override
   Widget build(BuildContext context) { 
-  AppDimensions.init(context);  
-  return MaterialApp();
-}" 
-## or you can use
-@override
+    AppDimensions.init(context);  
+    return MaterialApp();
+  }
+  ```
+
+  ```dart
+  @override
   Widget build(BuildContext context) {
-      return ScreenUtilInit(
-       designSize: const Size(360, 690),
-       minTextAdapt: true,
-       splitScreenMode: true,
-       child: MaterialApp.router(
-          routerConfig: AppRoutes.router,
-          title: 'Flutter Demo',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: MaterialApp.router(
+        routerConfig: AppRoutes.router,
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
       ),
     );
   }
- in your `main` method to initialize the dimensions before running the app. For example, you can use it like this:
+  ```
+ 
 
-## How to use API Calling 
-### How to use API Calling
+## How to use API Calling
 
 The `ApiRepository` class provides a simple way to make API calls. To use it, you need to create an instance of `ApiRepository` and then use the `apiCall` method to make the API call.
 
