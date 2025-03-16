@@ -9,7 +9,11 @@ class ApiRepository {
   static final Map<String, dynamic> headers = {};
   static late ApiClient _apiClient;
 
-  static void init({required String apiUrl, required Map<String, dynamic> appHeaders}) {
+ static Future<void> storageInit() async {
+    await GetStorage.init();
+  }
+
+  static Future<void> init({required String apiUrl, required Map<String, dynamic> appHeaders}) async {
     headers.addAll(appHeaders);
     ApiRepository().apiUrl = apiUrl;
     _apiClient = ApiClient(baseUrl: apiUrl, headers: headers);
