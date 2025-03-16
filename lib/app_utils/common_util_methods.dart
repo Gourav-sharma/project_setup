@@ -4,17 +4,17 @@ import '../project_setup.dart';
 
 class CommonUtilMethods {
 
-  static bool isValueEmpty(String value) {
+  static String isValueEmpty(String value,{String? message}) {
     if (value.isEmpty) {
-      return true;
+      return message??"Please enter value";
     }
-    return false;
+    return '';
   }
 
   static String isEmailValid(String email,{String? message}) {
     if(email.isEmpty){
       return emailValidationMessage;
-    }else if (RegExp(
+    }else if (!RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email)) {
       return message??emailValidationMessage2;
@@ -22,33 +22,33 @@ class CommonUtilMethods {
     return "";
   }
 
-  static bool isPasswordValid(String password) {
-    if (password.length < 8) {
-      return false;
+  static String isPasswordValid(String password,{String? message}) {
+    if(password.isEmpty){
+      return passwordValidationMessage;
+    }else if (password.length < 8) {
+      return message??passwordValidationMessage;
     }
-    return true;
+    return "";
   }
 
-  static bool isConfirmPasswordValid(String password, String confirmPassword) {
-    if (password != confirmPassword) {
-      return false;
+  static String isConfirmPasswordValid(String password, String confirmPassword,{String? message}) {
+    if(confirmPassword.isEmpty){
+      return confirmPasswordValidationMessage;
+    }else if(password!=confirmPassword){
+      return message??confirmPasswordValidationMessage2;
     }
-    return true;
+    return "";
   }
 
-  static bool isPhoneNumberValid(String phoneNumber) {
-    if (phoneNumber.length != 10) {
-      return false;
+  static String isPhoneNumberValid(String phoneNumber,{String? message,int? numberLength=10}) {
+    if(phoneNumber.isEmpty){
+      return numberValidationMessage;
+    }else if (phoneNumber.length != numberLength) {
+      return message ?? numberValidationMessage2;
     }
-    return true;
+    return "";
   }
 
-  static bool isNameValid(String name) {
-     if (name.length < 3) {
-      return false;
-    }
-    return true;
-  }
 
   static bool isDobValid(String dob) {
     final RegExp dobRegExp = RegExp(

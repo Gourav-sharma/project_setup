@@ -129,14 +129,8 @@ class _MyAppState extends State<MyApp> {
                       FormPageBloc().add(OnPasswordTap(showPassword: FormPageBloc().state.isPassword == false ? true : false));
                     },
                     validator: (value) {
-                      if (CommonUtilMethods.isValueEmpty(
-                          value ?? "")) {
-                        return passwordValidationMessage;
-                      } else if (!CommonUtilMethods
-                          .isPasswordValid(value!)) {
-                        return passwordLengthValidationMessage;
-                      }
-                      return null;
+                      return (CommonUtilMethods
+                          .isPasswordValid(value!));
                     },
                   ),
                 ],

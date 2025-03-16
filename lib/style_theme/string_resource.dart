@@ -25,6 +25,8 @@
   String passwordLengthValidationMessage = "Password should be at least 8 characters";
   String confirmPasswordValidationMessage = "Please enter confirm password";
   String confirmPasswordValidationMessage2 = "Password and confirm password should be same";
+  String numberValidationMessage = "Please enter phone number";
+  String numberValidationMessage2 = "Phone number should be 10 digits";
   String dobValidationMessage = "Please enter dob";
   String dobValidationMessage2 = "Please enter valid dob";
   String dontHaveAccount = "Don't have an account?";
