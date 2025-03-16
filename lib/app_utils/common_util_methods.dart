@@ -4,14 +4,14 @@ import '../project_setup.dart';
 
 class CommonUtilMethods {
 
-  static String isValueEmpty(String value,{String? message}) {
+  static String? isValueEmpty(String value,{String? message}) {
     if (value.isEmpty) {
       return message??"Please enter value";
     }
-    return '';
+    return null;
   }
 
-  static String isEmailValid(String email,{String? message}) {
+  static String? isEmailValid(String email,{String? message}) {
     if(email.isEmpty){
       return emailValidationMessage;
     }else if (!RegExp(
@@ -19,10 +19,10 @@ class CommonUtilMethods {
         .hasMatch(email)) {
       return message??emailValidationMessage2;
     }
-    return "";
+    return null;
   }
 
-  static String isPasswordValid(String password,{String? message,String? passwordLFormatMessage}) {
+  static String? isPasswordValid(String password,{String? message,String? passwordLFormatMessage}) {
     if(password.isEmpty){
       return passwordValidationMessage;
     }else if (password.length < 8) {
@@ -32,26 +32,26 @@ class CommonUtilMethods {
         .hasMatch(password)) {
       return passwordLFormatMessage??"Password should contain at least one uppercase letter, one lowercase letter, one number and one special character";
     }
-    return "";
+    return null;
   }
 
-  static String isConfirmPasswordValid(String confirmPassword,String password,
+  static String? isConfirmPasswordValid(String confirmPassword,String password,
       {String? message}) {
     if(confirmPassword.isEmpty){
       return confirmPasswordValidationMessage;
     }else if(password!=confirmPassword){
       return message??confirmPasswordValidationMessage2;
     }
-    return "";
+    return null;
   }
 
-  static String isPhoneNumberValid(String phoneNumber,{String? message,int? numberLength=10}) {
+  static String? isPhoneNumberValid(String phoneNumber,{String? message,int? numberLength=10}) {
     if(phoneNumber.isEmpty){
       return numberValidationMessage;
     }else if (phoneNumber.length != numberLength) {
       return message ?? numberValidationMessage2;
     }
-    return "";
+    return null;
   }
 
 
