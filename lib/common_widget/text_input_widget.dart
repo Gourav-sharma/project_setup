@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../style_theme/color_resource.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -63,6 +64,11 @@ class CustomTextFormField extends StatelessWidget {
         textAlign: TextAlign.start,
         maxLines: maxLines??1,
         autovalidateMode: AutovalidateMode.onUserInteraction,
+        inputFormatters: [
+          isPassword==true?
+          FilteringTextInputFormatter.allow(RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')):
+          FilteringTextInputFormatter.allow(RegExp('.*')),
+        ],
         decoration: InputDecoration(
           counterText: '',
           hintText: hintText,
