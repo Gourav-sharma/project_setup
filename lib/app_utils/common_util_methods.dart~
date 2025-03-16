@@ -35,8 +35,7 @@ class CommonUtilMethods {
     return "";
   }
 
-  static String isConfirmPasswordValid(String confirmPassword,String password,
-      {String? message}) {
+  static String isConfirmPasswordValid(String password, String confirmPassword,{String? message}) {
     if(confirmPassword.isEmpty){
       return confirmPasswordValidationMessage;
     }else if(password!=confirmPassword){
