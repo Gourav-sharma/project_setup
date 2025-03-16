@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import '../project_setup.dart';
 
@@ -88,7 +90,9 @@ class ApiClient {
 
   // Handles the response from the API.
   dynamic _handleResponse(Response response) {
-    return ApiResponse(data: response.data,message: response.data['message']);
+    var json = jsonDecode(response.toString());
+    return ApiResponse(data: response.data,message: json['message'],statusCode: json['statusCode']?? response.statusCode);
+   // return ApiResponse(data: response.data,message: response.data['message'],statusCode: response.statusCode);
   }
 
   String _handleError(DioException error) {

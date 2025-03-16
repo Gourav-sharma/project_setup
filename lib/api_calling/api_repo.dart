@@ -23,7 +23,8 @@ class ApiRepository {
 
  static Future<ApiResponse> apiCall(String endpoint, RequestType requestType,
       {dynamic data, Map<String, dynamic>? queryParameters, Map<String, dynamic>? headers}) async {
-    final ApiResponse response = await _apiClient.request(
+
+   final ApiResponse response = await _apiClient.request(
       endpoint,
       requestType: requestType,
       data: data,
@@ -32,7 +33,7 @@ class ApiRepository {
     );
 
     if(response.statusCode != 200 && response.statusCode != 201){
-      throw Exception(response.message);
+      throw ApiErrorMessageException(response.message??"");
     }
 
     return response;

@@ -11,12 +11,18 @@ class ApiResponse<T> {
     int? statusCode,
   }): isSuccess = isSuccess ?? true, statusCode = statusCode ?? 200;
 
-  // Method to check if the response has an error
-  bool get hasError => message != null || (statusCode >= 400);
-
   // You can use this for more detailed error logging or user messages
   @override
   String toString() {
-    return 'ApiResponse{isSuccess: $isSuccess, data: $data, errorMessage: $message, statusCode: $statusCode}';
+    return 'ApiResponse{isSuccess: $isSuccess, data: $data, message: $message, statusCode: $statusCode}';
   }
+}
+
+class ApiErrorMessageException implements Exception {
+  final String message;
+
+  ApiErrorMessageException(this.message);
+
+  @override
+  String toString() => message; // Override toString to return only the message
 }

@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_setup/project_setup.dart';
 
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
 Future<void> main() async {
   await ApiRepository.storageInit();
   await ApiRepository.init(apiUrl: '',
@@ -175,15 +176,12 @@ class _MyAppState extends State<MyApp> {
                         onTap: () async {
                           CommonUtilMethods.closeKeyboard(context);
                           try{
-                           ApiResponse response = await ApiRepository.apiCall('auth/Login',
+                           ApiResponse response = await ApiRepository.apiCall('request/login',
                               data: {
                                 "email": state.email,
-                                "password": state.password
+                                "password": state.password,
                               },
                               RequestType.post,);
-                            storage.write(SessionManagerKeys.authToken, response.data['data']['authorizationToken']);
-                            storage.write(SessionManagerKeys.accessToken, response.data['data']['accessToken']);
-                            AppLogs.showInfoLogs("authToken : ${storage.read(SessionManagerKeys.authToken)}");
                           }catch(e){
                             CommonUtilMethods.showSnackBar(context: context, message: e.toString());
                             AppLogs.showErrorLogs(e.toString());

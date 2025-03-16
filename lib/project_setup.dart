@@ -43,7 +43,7 @@ export 'form_bloc/form_event.dart';
 
 //state
 export 'app_bloc/app_bloc_state.dart';
-export 'form_bloc/form_state.dart';
+export 'form_bloc/form_page_state.dart';
 
 
 //view

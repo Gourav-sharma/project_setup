@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'form_event.dart';
-import 'form_state.dart';
+import '../project_setup.dart';
 
 
 class FormPageBloc extends Bloc<FormEvent, FormPageState> {
