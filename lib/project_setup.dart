@@ -1,12 +1,5 @@
 import 'project_setup_platform_interface.dart';
 
-//basic
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_storage/get_storage.dart';
-
-
-
 //network
 export 'api_calling/api_client.dart';
 export 'api_calling/api_repo.dart';

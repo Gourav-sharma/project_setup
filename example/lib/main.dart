@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_setup/project_setup.dart';
-import 'package:get_storage/get_storage.dart';
 
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 Future<void> main() async {

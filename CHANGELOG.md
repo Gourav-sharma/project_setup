@@ -1,7 +1,8 @@
 ## 0.0.1
 
 * TODO: Describe initial release.
-## 0.0.2
+## 0.0.3
 
 * support for running flutter command
 * support for running melos command
+* updated API client to support dynamic headers
