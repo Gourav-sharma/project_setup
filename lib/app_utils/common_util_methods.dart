@@ -22,17 +22,17 @@ class CommonUtilMethods {
     return null;
   }
 
-  static String? isPasswordValid(String password,{String? message,String? passwordLFormatMessage}) {
+  static String? isPasswordValid(String password,
+      {String? message,String? passwordLFormatMessage,int? passwordLength=8}) {
     if(password.isEmpty){
       return passwordValidationMessage;
-    }else if (password.length < 8) {
+    }else if (password.length < passwordLength!) {
       return message??passwordLengthValidationMessage;
+    }else if (!RegExp(
+            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+        .hasMatch(password)) {
+      return passwordLFormatMessage??"Password should contain at least one uppercase letter, one lowercase letter, one number and one special character";
     }
-    // else if (!RegExp(
-    //         r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
-    //     .hasMatch(password)) {
-    //   return passwordLFormatMessage??"Password should contain at least one uppercase letter, one lowercase letter, one number and one special character";
-    // }
     return null;
   }
 

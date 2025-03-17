@@ -78,6 +78,12 @@ class _MyAppState extends State<MyApp> {
                   formKey: _formKey,
                   showAppBar: true,
                   appBarHeight: 25.dp,
+                  appBarColor: ColorResource.appThemeColor,
+                  backIcon: true,
+                  backIconWidget: Icon(
+                    Icons.arrow_back_ios,
+                    color: ColorResource.primaryColor,
+                  ),
                   emailInputWidget: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

@@ -19,7 +19,6 @@ class CustomBodyWidget extends StatelessWidget {
   final Widget? actionWidget;
   final Widget? backIconWidget;
   final Widget? menuIconWidget;
-  final Widget? leadingWidget;
   final Color? iconColor;
   final Brightness? brightness;
   final dynamic appBarHeight;
@@ -47,7 +46,6 @@ class CustomBodyWidget extends StatelessWidget {
     this.actionWidget,
     this.backIconWidget,
     this.menuIconWidget,
-    this.leadingWidget,
     this.iconColor,
     this.brightness,
     this.appBarHeight,
@@ -83,18 +81,17 @@ class CustomBodyWidget extends StatelessWidget {
             ),
             toolbarHeight: appBarHeight,
             centerTitle: true,
-            leading:leadingWidget,
-            // menuIcon == true
-            //     ? GestureDetector(
-            //      onTap: menuIconTap,
-            //      child:menuIconWidget,
-            // )
-            //     : backIcon == true
-            //         ? GestureDetector(
-            //           onTap: backIconTap,
-            //           child: backIconWidget,
-            //        )
-            //         : null,
+            leading: menuIcon == true
+                ? GestureDetector(
+                 onTap: menuIconTap,
+                 child:menuIconWidget,
+            )
+                : backIcon == true
+                    ? GestureDetector(
+                      onTap: backIconTap,
+                      child: backIconWidget,
+                   )
+                    : null,
             actions: actionWidget != null ? [
               actionWidget!,
             ]:null,
