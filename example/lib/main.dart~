@@ -78,12 +78,6 @@ class _MyAppState extends State<MyApp> {
                   formKey: _formKey,
                   showAppBar: true,
                   appBarHeight: 25.dp,
-                  appBarColor: ColorResource.appThemeColor,
-                  backIcon: true,
-                  backIconWidget: Icon(
-                    Icons.arrow_back_ios,
-                    color: ColorResource.primaryColor,
-                  ),
                   emailInputWidget: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -177,14 +171,15 @@ class _MyAppState extends State<MyApp> {
                       elevation: 2,
                       height: 50,
                       onTap: () async {
+                        LogoutDialog.show(context);
                         CommonUtilMethods.closeKeyboard(context);
                         try{
-                          ApiResponse response = await ApiRepository.apiCall('request/login',
-                            data: {
-                              "email": state.email,
-                              "password": state.password,
-                            },
-                            RequestType.post,);
+                          // ApiResponse response = await ApiRepository.apiCall('request/login',
+                          //   data: {
+                          //     "email": state.email,
+                          //     "password": state.password,
+                          //   },
+                          //   RequestType.post,);
                         }catch(e){
                           CommonUtilMethods.showSnackBar(context: context, message: e.toString());
                           AppLogs.showErrorLogs(e.toString());

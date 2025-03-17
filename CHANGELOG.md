@@ -14,3 +14,7 @@
 ## 0.0.6
 
 * create form page more dynamic and flexible, now just pass widgets as per your need on the basis of widgets name
+
+## 0.0.7
+
+* create logout dialog more easy to use

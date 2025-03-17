@@ -4,15 +4,44 @@ import 'package:flutter/material.dart';
 
 class LogoutDialog extends StatelessWidget {
   final VoidCallback? onLogout;
+  final Color? backgroundColor;
+  final Color? titleColor;
+  final Color? contentColor;
+  final Color? cancelColor;
+  final Color? confirmColor;
+  final String? title;
+  final String? content;
+  final String? cancelText;
+  final String? confirmText;
+  final dynamic titleFontSize;
+  final dynamic contentFontSize;
+  final dynamic cancelFontSize;
+  final dynamic confirmFontSize;
 
-  const LogoutDialog({super.key, this.onLogout});
+
+  const LogoutDialog({
+    super.key,
+    this.backgroundColor,
+    this.onLogout,
+    this.titleColor,
+    this.contentColor,
+    this.cancelColor,
+    this.confirmColor,
+    this.title,
+    this.content,
+    this.cancelText,
+    this.confirmText,
+    this.titleFontSize,
+    this.contentFontSize,
+    this.cancelFontSize,
+    this.confirmFontSize,
+    });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return AlertDialog(
-      backgroundColor: theme.brightness == Brightness.dark ? Colors.grey[800] :
-      Colors.grey[200]?.withValues(alpha: 0.70),
+      backgroundColor: backgroundColor ?? Colors.grey.withValues(alpha: 1.3),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
@@ -27,24 +56,24 @@ class LogoutDialog extends StatelessWidget {
       ),
       title: Center(
         child: CustomTextWidget(
-         text:  'Log Out',
-            fontSize: 18.sp,
+         text: title ?? 'Log Out',
+            fontSize: titleFontSize ?? 18.sp,
             fontWeight: FontWeight.w500,
-            textColor: ColorResource.blackColor,
+            textColor: titleColor ?? ColorResource.blackColor,
         ),
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
-            padding:  EdgeInsets.only(top: 20, left: 25, right: 25,bottom: 10),
+            padding:  EdgeInsets.only(top: 10, left: 25, right: 25,bottom: 20),
             child: CustomTextWidget(
-             text:  'Are you sure you want to logout?',
-              fontSize: 18.sp,
+             text: content ?? 'Are you sure you want to logout?',
+              fontSize: contentFontSize ?? 18.sp,
               maxLines: 2,
               textAlign: TextAlign.center,
               fontWeight: FontWeight.w400,
-              textColor: ColorResource.blackColor,
+              textColor: contentColor ?? ColorResource.blackColor,
             ),
           ),
           const SizedBox(height: 10),
@@ -61,10 +90,10 @@ class LogoutDialog extends StatelessWidget {
                   margin:  EdgeInsets.only(top: 10,bottom: 12),
                   child: CustomTextWidget(
                     textAlign: TextAlign.center,
-                    text: "Cancel",
-                    fontSize: 16.sp,
+                    text: cancelText ?? "Cancel",
+                    fontSize: cancelFontSize ?? 16.sp,
                     fontWeight: FontWeight.w400,
-                    textColor: ColorResource.primaryColor,
+                    textColor: cancelColor ?? ColorResource.primaryColor,
                     onTap: () {
                       Navigator.of(context).pop();
                     },
@@ -80,10 +109,10 @@ class LogoutDialog extends StatelessWidget {
                   margin:  EdgeInsets.only(top: 10,bottom: 12),
                   child: CustomTextWidget(
                     textAlign: TextAlign.center,
-                    text: 'Sign Out',
-                    fontSize: 16.sp,
+                    text: confirmText ?? 'Sign Out',
+                    fontSize: confirmFontSize ?? 16.sp,
                     fontWeight: FontWeight.w400,
-                    textColor: ColorResource.primaryColor,
+                    textColor: confirmColor ?? ColorResource.primaryColor,
                     onTap: onLogout,
                   ),
                 ),
@@ -102,15 +131,42 @@ class LogoutDialog extends StatelessWidget {
 
   // Static method to show the dialog
   static void show(BuildContext context,
-      String backRoute, {VoidCallback? onLogout}) {
+        {VoidCallback? onLogout,
+        Color? backgroundColor,Color? titleColor,
+         Color? contentColor,
+         Color? cancelColor,
+         Color? confirmColor,
+         String? title,
+         String? content,
+         String? cancelText,
+         String? confirmText,
+         dynamic titleFontSize,
+         dynamic contentFontSize,
+         dynamic cancelFontSize,
+         dynamic confirmFontSize
+     }) {
     showDialog(
       context: context,
       barrierColor:Colors.black.withValues(alpha: 0.75),
       builder: (BuildContext context) {
         return LogoutDialog(
           onLogout: onLogout,
+          backgroundColor: backgroundColor,
+          titleColor: titleColor,
+          contentColor: contentColor,
+          cancelColor: cancelColor,
+          confirmColor: confirmColor,
+          title: title,
+          content: content,
+          cancelText: cancelText,
+          confirmText: confirmText,
+          titleFontSize: titleFontSize,
+          contentFontSize: contentFontSize,
+          cancelFontSize: cancelFontSize,
+          confirmFontSize: confirmFontSize,
         ); // Now const since no parameters
       },
     );
   }
 }
+
