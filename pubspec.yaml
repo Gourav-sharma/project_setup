@@ -1,7 +1,7 @@
 name: project_setup
 description: "A plugin to make your flutter project setup make it easier."
-version: 0.0.7
-repository: https://github.com/ProjectSetup/project_setup
+version: 0.0.8
+repository: https://github.com/Gourav-sharma/project_setup
 
 environment:
   sdk: ^3.6.2
