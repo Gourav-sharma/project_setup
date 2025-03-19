@@ -22,3 +22,7 @@
 ## 0.0.8
 
 * remove unwanted code and update git url
+
+## 0.0.9
+
+* code optimization

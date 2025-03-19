@@ -173,7 +173,7 @@ class _MyAppState extends State<MyApp> {
                       onTap: () async {
                         CommonUtilMethods.closeKeyboard(context);
                         try{
-                          ApiResponse response = await ApiRepository.apiCall('request/login',
+                          await ApiRepository.apiCall('request/login',
                             data: {
                               "email": state.email,
                               "password": state.password,
