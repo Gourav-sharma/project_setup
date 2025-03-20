@@ -1,10 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/services.dart';
 import 'package:project_setup/project_setup.dart';
 
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -180,7 +178,9 @@ class _MyAppState extends State<MyApp> {
                             },
                             RequestType.post,);
                         }catch(e){
-                          CommonUtilMethods.showSnackBar(context: context, message: e.toString());
+                          if(context.mounted){
+                            CommonUtilMethods.showSnackBar(context: context, message: e.toString());
+                          }
                           AppLogs.showErrorLogs(e.toString());
                         }
 

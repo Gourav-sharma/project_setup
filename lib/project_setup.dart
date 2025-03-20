@@ -1,5 +1,8 @@
 import 'project_setup_platform_interface.dart';
 
+
+export 'package:flutter_bloc/flutter_bloc.dart';
+
 //network
 export 'api_calling/api_client.dart';
 export 'api_calling/api_repo.dart';
