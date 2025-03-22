@@ -19,41 +19,41 @@ class FormPageBloc extends Bloc<FormEvent, FormPageState> {
 
   }
 
-  void _formInit(FormInitEvent event, Emitter<FormPageState> emit) async {}
+  Future<void> _formInit(FormInitEvent event, Emitter<FormPageState> emit) async {}
 
 
-  void _firstnameChanged(FirstNameEvent event, Emitter<FormPageState> emit) {
+  Future<void> _firstnameChanged(FirstNameEvent event, Emitter<FormPageState> emit) async {
     emit(state.copyWith(firstName: event.value));
   }
 
-  void _lastnameChanged(LastNameEvent event, Emitter<FormPageState> emit) {
+  Future<void> _lastnameChanged(LastNameEvent event, Emitter<FormPageState> emit) async {
     emit(state.copyWith(lastName: event.value));
   }
 
-  void _passwordChanged(PasswordValidationEvent event, Emitter<FormPageState> emit) {
+  Future<void> _passwordChanged(PasswordValidationEvent event, Emitter<FormPageState> emit) async {
     emit(state.copyWith(password: event.value));
   }
 
-  void _confirmPasswordChanged(ConfirmPasswordValidationEvent event, Emitter<FormPageState> emit) {
+  Future<void> _confirmPasswordChanged(ConfirmPasswordValidationEvent event, Emitter<FormPageState> emit) async {
     emit(state.copyWith(confirmPassword: event.value));
   }
 
-  void _emailChanged(EmailValidationEvent event, Emitter<FormPageState> emit) {
+  Future<void> _emailChanged(EmailValidationEvent event, Emitter<FormPageState> emit) async {
     emit(state.copyWith(email: event.value));
   }
 
-  void _passwordTap(OnPasswordTap event, Emitter<FormPageState> emit) {
+  Future<void> _passwordTap(OnPasswordTap event, Emitter<FormPageState> emit) async {
     emit(state.copyWith(isPasswordVisible: event.showPassword));
   }
-  void _confirmPasswordTap(ConfirmPasswordTapEvent event, Emitter<FormPageState> emit) {
+  Future<void> _confirmPasswordTap(ConfirmPasswordTapEvent event, Emitter<FormPageState> emit) async {
     emit(state.copyWith(isConfirmPasswordVisible: event.showConfirmPassword));
   }
 
-  void _formSubmit(FormPageSubmitEvent event, Emitter<FormPageState> emit) {
+  Future<void> _formSubmit(FormPageSubmitEvent event, Emitter<FormPageState> emit) async {
 
   }
 
-  void _unFocus(UnfocusEvent event, Emitter<FormPageState> emit) {
+  Future<void> _unFocus(UnfocusEvent event, Emitter<FormPageState> emit) async {
 
     state.emailFocusNode.unfocus();
     state.passwordFocusNode.unfocus();

@@ -30,3 +30,7 @@
 ## 0.0.10
 
 * update all packages to latest version
+
+## 0.0.11
+
+* documents related changes

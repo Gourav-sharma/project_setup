@@ -7,7 +7,7 @@ class AppBloc extends Bloc<AppBlocEvent, AppBlocState> {
 
   }
 
-  Future<void> _init(AppBlocInitEvent event, Emitter<AppBlocState> emit) async {
+  void _init(AppBlocInitEvent event, Emitter<AppBlocState> emit) async {
     if(storage.read(SessionManagerKeys.isDarkMode) == null) {
       storage.write(SessionManagerKeys.isDarkMode, false);
       emit(state.copyWith(isDarkMode: false));
@@ -16,7 +16,7 @@ class AppBloc extends Bloc<AppBlocEvent, AppBlocState> {
     }
   }
 
-  Future<void> _themeChange(ThemeChangeEvent event, Emitter<AppBlocState> emit) async {
+  void _themeChange(ThemeChangeEvent event, Emitter<AppBlocState> emit) {
     storage.write(SessionManagerKeys.isDarkMode, event.isDarkMode);
     emit(state.copyWith(isDarkMode: event.isDarkMode));
   }
