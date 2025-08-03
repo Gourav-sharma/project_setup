@@ -8,6 +8,7 @@ issue_tracker: https://github.com/Gourav-sharma/project_setup/issues
 
 environment:
   sdk: ^3.6.0
+  flutter: ">=1.10.0 <4.0.0"
 
 dependencies:
   flutter:
