@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'package:flutter/material.dart';
 import '../project_setup.dart';
 
 class CommonUtilMethods {
@@ -129,11 +127,11 @@ static Future<bool> closeKeyboard(BuildContext context) async {
 
 static saveDataModelData(dynamic modelData){
     String data = jsonEncode(modelData);
-    storage.write(SessionManagerKeys.model, data);
+    storage.write(StorageManager.model, data);
 }
 
 static Map<String, dynamic>? getModelData(){
-    String? data = storage.read(SessionManagerKeys.model);
+    String? data = storage.read(StorageManager.model);
     if (data != null) {
       Map<String, dynamic> jsonData = jsonDecode(data);
       return jsonData;

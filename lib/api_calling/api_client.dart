@@ -1,6 +1,4 @@
-import 'dart:convert';
 
-import 'package:dio/dio.dart';
 import '../project_setup.dart';
 
 
@@ -14,7 +12,7 @@ class ApiClient {
     required this.baseUrl,
     required this.headers
   }) : _dio = Dio(BaseOptions(baseUrl: baseUrl)
-     ) {
+  ) {
     _dio.interceptors.add(LogInterceptor(
         responseBody: true,
         requestBody: true,
@@ -39,6 +37,7 @@ class ApiClient {
         Map<String, dynamic>? queryParameters,
         Map<String, dynamic>? headers,
       }) async {
+    _dio.options.headers.addAll(headers ?? {});
     try {
       Response response;
       switch (requestType) {
@@ -92,7 +91,7 @@ class ApiClient {
   dynamic _handleResponse(Response response) {
     var json = jsonDecode(response.toString());
     return ApiResponse(data: response.data,message: json['message'],statusCode: json['statusCode']?? response.statusCode);
-   // return ApiResponse(data: response.data,message: response.data['message'],statusCode: response.statusCode);
+    // return ApiResponse(data: response.data,message: response.data['message'],statusCode: response.statusCode);
   }
 
   String _handleError(DioException error) {
@@ -100,9 +99,17 @@ class ApiClient {
     AppLogs.showErrorLogs("${error.type}");
     AppLogs.showErrorLogs("${error.message}");
 
-   // var serverMessage = error.response?.data['message'] ?? error.message;
 
-    var serverMessage = error.message??""; // Default to error.message
+    var serverMessage ;
+
+    if(error.response?.statusCode == 400 || error.response?.statusCode == 401 || error.response?.statusCode == 404){
+      serverMessage = "Server Not Found";
+    }else if(error.response?.statusCode == 403){
+      serverMessage = error.message??"" ;
+      StorageManager.clearStorage();
+    }else{
+      serverMessage = error.message??"" ;
+    }
 
     if (error.response != null && error.response!.data != null) {
       if (error.response!.data is Map<String, dynamic>) {
@@ -150,3 +157,5 @@ class ApiClient {
 }
 
 enum RequestType { get, post, put, delete, postMultipart }
+
+

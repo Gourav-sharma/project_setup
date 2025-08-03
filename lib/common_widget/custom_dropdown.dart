@@ -80,14 +80,14 @@ class CustomDropdown extends StatelessWidget {
           ),
           hint: Text(
             hint ?? 'Choose Item',
-            style: TextStyle(color: storage.read(SessionManagerKeys.isDarkMode) == false ? Colors.black : Colors.white, fontSize: 16.sp),
+            style: TextStyle(color: Colors.black, fontSize: 16.sp),
           ),
           items: items.map((item) {
             return DropdownMenuItem<Map<String, dynamic>>(
               value: item,
               child: Text(
                 '${item['name']}',
-                style: TextStyle(color: storage.read(SessionManagerKeys.isDarkMode) == false ? Colors.black : Colors.white, fontSize: 16.sp),
+                style: TextStyle(color: Colors.black, fontSize: 16.sp),
               ),
             );
           }).toList(),
@@ -104,7 +104,7 @@ class CustomDropdown extends StatelessWidget {
           menuItemStyleData: const MenuItemStyleData(
             height: 40,
           ),
-          style: TextStyle(color: storage.read(SessionManagerKeys.isDarkMode) == false ? Colors.black : Colors.white, fontSize: 16.sp),
+          style: TextStyle(color: Colors.black, fontSize: 16.sp),
         ),
       ),
     );

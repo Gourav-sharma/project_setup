@@ -1,5 +1,5 @@
-import 'package:dio/dio.dart';
-import 'package:http_parser/http_parser.dart';
+
+import '../project_setup.dart';
 
 class FormDataHelper {
   final Map<String, dynamic> _data = {};

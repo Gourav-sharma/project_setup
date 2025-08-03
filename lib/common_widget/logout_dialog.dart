@@ -1,5 +1,4 @@
 import '../project_setup.dart';
-import 'package:flutter/material.dart';
 
 
 class LogoutDialog extends StatelessWidget {

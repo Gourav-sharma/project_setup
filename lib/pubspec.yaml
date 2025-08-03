@@ -18,7 +18,8 @@ description: "Project Setup"
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.6.2
+  sdk: ^3.6.0
+
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -50,6 +51,7 @@ dependencies:
   percent_indicator: ^4.2.4
   permission_handler: ^11.4.0
   package_rename: ^1.9.0
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:

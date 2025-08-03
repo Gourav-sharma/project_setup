@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import '../project_setup.dart';
 
 class ColorResource {
   static const Color scaffoldColor = Color(0xFFFFFFFF);

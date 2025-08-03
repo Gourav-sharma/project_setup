@@ -1,7 +1,5 @@
 import 'dart:developer';
-
-import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+import '../project_setup.dart';
 
 class AppLogs {
   static void showLogs(String tag, String message) {

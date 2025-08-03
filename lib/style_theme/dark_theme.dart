@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
+import '../project_setup.dart';
 
-import 'color_resource.dart';
 
 class DarkTheme {
   static ThemeData get theme {

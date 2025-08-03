@@ -1,6 +1,4 @@
-import 'dart:io';
 import '../project_setup.dart';
-import 'package:flutter/material.dart';
 
 class CustomFileWidget extends StatelessWidget {
   final String? filePath;

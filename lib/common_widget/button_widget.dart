@@ -45,8 +45,7 @@ class CustomButton extends StatelessWidget {
       ),
       child: CustomTextWidget(
         text: text,
-        textColor: storage.read(SessionManagerKeys.isDarkMode) == true ?
-        ColorResource.blackColor: textColor ?? ColorResource.whiteColor,
+        textColor:  ColorResource.whiteColor,
         fontSize: fontSize ?? 15.sp,
         fontWeight: FontWeight.w500,
       ),

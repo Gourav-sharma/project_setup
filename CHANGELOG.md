@@ -34,3 +34,7 @@
 ## 0.0.11
 
 * documents related changes
+
+## 0.0.12
+
+* update according to latest Flutter version

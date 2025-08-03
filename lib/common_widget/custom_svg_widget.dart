@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import '../project_setup.dart';
 
 class CustomSvgWidget extends StatelessWidget {
   final String assetName;

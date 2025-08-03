@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import '../project_setup.dart';
 
 class CustomChipWidget extends StatelessWidget {
   final Axis direction;

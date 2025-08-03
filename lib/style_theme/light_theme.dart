@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-import 'app_dimension.dart';
-import 'color_resource.dart';
+import '../project_setup.dart';
+
 
 class LightTheme {
   static ThemeData get theme => ThemeData.light().copyWith(
