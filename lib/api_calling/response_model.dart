@@ -1,21 +1,21 @@
-class ApiResponse<T> {
-  bool? isSuccess=true;
-  T? data;
-  String? message;
-  int statusCode = 200;
+class ResponseModel<T> {
+  final bool success;
+  final T? data;
+  final String? error;
+  final String? message;
+  final int? statusCode;
 
-  ApiResponse({
-    bool? isSuccess,
+  ResponseModel({
+    required this.success,
     this.data,
+    this.error,
     this.message,
-    int? statusCode,
-  }): isSuccess = isSuccess ?? true, statusCode = statusCode ?? 200;
+    this.statusCode,
+  });
 
-  // You can use this for more detailed error logging or user messages
   @override
-  String toString() {
-    return 'ApiResponse{isSuccess: $isSuccess, data: $data, message: $message, statusCode: $statusCode}';
-  }
+  String toString() =>
+      'ResponseModel(success: $success, data: $data, error: $error, message: $message, statusCode: $statusCode)';
 }
 
 class ApiErrorMessageException implements Exception {

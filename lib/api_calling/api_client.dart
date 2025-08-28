@@ -4,94 +4,59 @@ import '../project_setup.dart';
 
 class ApiClient {
   final Dio _dio;
-  final String baseUrl;
-  final Map<String, dynamic> headers;
 
-  ApiClient({
-    List<Interceptor>? interceptors,
-    required this.baseUrl,
-    required this.headers
-  }) : _dio = Dio(BaseOptions(baseUrl: baseUrl)
-  ) {
-    _dio.interceptors.add(LogInterceptor(
-        responseBody: true,
-        requestBody: true,
-        requestHeader: true,
-        responseHeader: false,
-        error: true,
-        request: true,
-        logPrint: (object) {
-          AppLogs.showInfoLogs(object.toString());
-        }
+  ApiClient._internal(this._dio);
+
+  factory ApiClient({required String baseUrl, Map<String, dynamic>? headers}) {
+    final dio = Dio(BaseOptions(
+      baseUrl: baseUrl,
+      connectTimeout: const Duration(seconds: 10),
+      receiveTimeout: const Duration(seconds: 10),
+      headers: headers ?? {"Content-Type": "application/json"},
     ));
-    _dio.options.headers = headers;
-    if (interceptors != null) {
-      _dio.interceptors.addAll(interceptors);
-    }
+
+    // ✅ Attach interceptors
+    dio.interceptors.add(CustomInterceptors());
+    dio.interceptors.add(LogInterceptor(
+      request: true,
+      requestBody: true,
+      responseBody: true,
+      error: true,
+    ));
+
+    return ApiClient._internal(dio);
   }
 
-  Future<ApiResponse> request(
-      String endpoint, {
-        required RequestType requestType,
-        dynamic data,
-        Map<String, dynamic>? queryParameters,
-        Map<String, dynamic>? headers,
-      }) async {
-    _dio.options.headers.addAll(headers ?? {});
+  Future<ResponseModel<T>> request<T>({
+    required String endpoint,
+    required T Function(dynamic data) fromJson,
+    String method = 'GET',
+    Map<String, dynamic>? queryParameters,
+    dynamic body,
+    Map<String, dynamic>? headers,
+  }) async {
     try {
-      Response response;
-      switch (requestType) {
-        case RequestType.get:
-          response = await _dio.get(
-            endpoint,
-            queryParameters: queryParameters,
-            options: Options(headers: headers),
-          );
-          break;
-        case RequestType.post:
-          response = await _dio.post(
-            endpoint,
-            data: data,
-            queryParameters: queryParameters,
-            options: Options(headers: headers),
-          );
-          break;
-        case RequestType.put:
-          response = await _dio.put(
-            endpoint,
-            data: data,
-            queryParameters: queryParameters,
-            options: Options(headers: headers),
-          );
-          break;
-        case RequestType.delete:
-          response = await _dio.delete(
-            endpoint,
-            data: data,
-            queryParameters: queryParameters,
-            options: Options(headers: headers),
-          );
-          break;
-        case RequestType.postMultipart:
-          response = await _dio.post(
-            endpoint,
-            data: data,
-            queryParameters: queryParameters,
-            options: Options(headers: headers),
-          );
-          break;
-      }
-      return _handleResponse(response);
+      final response = await _dio.request(
+        endpoint,
+        data: body,
+        queryParameters: queryParameters,
+        options: Options(
+          method: method,
+          headers: headers,
+        ),
+      );
+
+      final responseData = response.data;
+
+      return ResponseModel<T>(
+        success: true,
+        data: fromJson(responseData),
+        message: responseData["message"], // ✅ auto-extract message
+        statusCode: response.statusCode,
+      );
     } on DioException catch (e) {
       throw _handleError(e);
     }
-  }
-
-  // Handles the response from the API.
-  dynamic _handleResponse(Response response) {
-    var json = jsonDecode(response.toString());
-    return ApiResponse(data: response.data,message: json['message'],statusCode: json['statusCode']?? response.statusCode);
-    // return ApiResponse(data: response.data,message: response.data['message'],statusCode: response.statusCode);
   }
 
   String _handleError(DioException error) {
@@ -153,6 +118,7 @@ class ApiClient {
     }
     return serverMessage;
   }
+
 
 }
 
