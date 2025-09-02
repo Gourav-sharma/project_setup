@@ -1,6 +1,6 @@
 name: project_setup
 description: "A plugin to make your flutter project setup make it easier."
-version: 0.0.12
+version: 0.0.13
 homepage: https://github.com/Gourav-sharma/project_setup
 repository: https://github.com/Gourav-sharma/project_setup
 issue_tracker: https://github.com/Gourav-sharma/project_setup/issues
@@ -14,22 +14,19 @@ dependencies:
   flutter:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
-  flutter_bloc: ^9.1.0
-  dio: ^5.8.0+1
-  go_router: ^14.8.1
+  dio: ^5.9.0
+  go_router: ^16.2.1
   get_storage: ^2.1.1
-  http: ^1.3.0
+  http: ^1.5.0
   flutter_screenutil: ^5.9.3
-  flutter_svg: ^2.0.17
-  loading_overlay_pro: ^2.1.1
+  flutter_svg: ^2.2.0
   dropdown_button2: ^2.3.9
   image_picker: ^1.1.2
   http_parser: ^4.1.2
-  percent_indicator: ^4.2.4
-  permission_handler: ^11.4.0
+  percent_indicator: ^4.2.5
+  permission_handler: ^12.0.1
   cached_network_image: ^3.4.1
-  loader_bundle:
-     path: ../loader_bundle
+#  loader_bundle: ^0.0.4
 
 dev_dependencies:
   flutter_test:

@@ -83,45 +83,11 @@ class CommonUtilMethods {
         : LightTheme.theme;
   }
 
-  static createMultipartRequest({
-    required bool isField,
-    required bool isFile,
-   //  required Map<String, dynamic> fieldJson
-  }) async {
-    String? imagePath = await ImagePickerHelper.pickImage(
-        isMultiple: false
-    );
-    String path = imagePath??"";
-    AppLogs.showInfoLogs(path);
-
-    // final fieldData = fieldJson ?? {};
-    final fieldData = {
-      'name': 'John Doe',
-      'age': 30,
-    };
-    final fileMap = {
-      'key': 'profileImage',
-      'path': path,
-      'filename': path.split('/').last,
-      'contentType': 'multipart/form-data',
-    };
-
-    final formData = await FormDataHelper().getRequestData(
-      isField: isField,
-      isFile: isFile,
-      fieldData: fieldData,
-      fileData: fileMap,
-    );
-    AppLogs.showMultipartRequestLogs(formData);
-  }
-
 
 static Future<bool> closeKeyboard(BuildContext context) async {
   if (FocusScope.of(context).hasFocus) {
-    AppLogs.showInfoLogs("Keyboard closed");
     FocusScope.of(context).requestFocus(FocusNode());
   }
-  //await Future.delayed(Duration(milliseconds: 100)); // Simulate async operation
   return !FocusScope.of(context).hasFocus;
 }
 

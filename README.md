@@ -20,9 +20,6 @@ Project Setup is a Flutter plugin which provides a pre-built setup for a typical
 ## Features
 
 - **Theme**: It provides a pre-built theme with a set of colors and fonts that you can use in your project.
-- **String Management**: It supports provides a set of default strings that you can use in your project.
-- **Navigation**: It provides a pre-built navigation system that you can use to navigate between screens.
-- **Form Validation**: It provides a set of validators that you can use to validate your form fields.
 - **Dialogs**: It provides a set of pre-built dialogs that you can use to alert the user.
 - **Logger**: It provides a logger that you can use to log messages in your project.
 - **Network**: It provides a set of network utilities that you can use to make HTTP requests. You can easily make API calls and get a response from the server.
@@ -30,15 +27,15 @@ Project Setup is a Flutter plugin which provides a pre-built setup for a typical
 - **BodyWidget**: It provides a pre-built body widget with a set of commonly used widgets, such as a `Scaffold`, `SingleChildScrollView`, `Padding`, and `Column`.
 - **ButtonWidget**: It provides a pre-built button widget with a set of commonly used styles and properties.
 - **CustomDropdown**: It provides a pre-built dropdown widget with a set of commonly used styles and properties.
-- **CustomFileWidget**: It provides a pre-built file widget with a set of commonly used styles and properties.
-- **CustomListWidget**: It provides a pre-built list widget with a set of commonly used styles and properties.
-- **CustomSvgWidget**: It provides a pre-built SVG widget with a set of commonly used styles and properties.
+- **CustomFileWidget**: It provides a pre-built file widget to show file image in a widget.
+- **CustomListWidget**: It provides a pre-built list widget with a set of commonly used styles and properties. And also loader is there in bottom when list is using pagination.
+- **CustomGridWidget**: It provides a pre-built grid widget with a set of commonly used styles and properties.
+- **CustomAssetWidget**: It provides a pre-built asset widget to show asset image in a widget.
+- **CustomSvgWidget**: It provides a pre-built SVG widget to show SVG image in a widget.
 - **CustomTextWidget**: It provides a pre-built text widget with a set of commonly used styles and properties.
 - **CustomTextInputWidget**: It provides a pre-built text input widget with a set of commonly used styles and properties.
 - **LogoutDialog**: It provides a pre-built logout dialog with a set of commonly used styles and properties.
-- **PermissionDialog**: It provides a pre-built permission dialog with a set of commonly used styles and properties.
 - **SideDrawer**: It provides a pre-built side drawer widget with a set of commonly used styles and properties.
-- **Form Bloc**: It provides a pre-built form bloc that you can use to manage your form state. It also provides a pre-built form state and form page that you can use for all your input pages like login, signup, forgot password, etc.
 To use the FormPage for a login screen in your Flutter project, follow these steps:
 
 1. **Import the necessary packages:**
@@ -46,206 +43,8 @@ To use the FormPage for a login screen in your Flutter project, follow these ste
    Ensure you have the necessary imports at the top of your Dart file:
 
    ```dart
-   import 'package:flutter/material.dart';
-   import 'package:flutter_bloc/flutter_bloc.dart';
-   import 'package:flutter/gestures.dart';
-   import 'package:project_setup/form_bloc/form_bloc.dart';
-   import 'package:project_setup/form_bloc/form_state.dart';
-   import 'package:project_setup/form_bloc/form_page.dart';
    import 'package:project_setup/project_setup.dart';
    ```
-
-   2. **Create the Login Page:**
-
-      Define a `LoginFormPage` widget that uses the `FormPageBloc` to manage its form state:
-
-    
-class LoginView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<FormPageBloc>(
-          create: (BuildContext context) => FormPageBloc(),
-        ),
-        BlocProvider<LoginBloc>(
-          create: (BuildContext context) => LoginBloc()..add(LoginInitEvent()),
-        ),
-      ],
-      child: BlocBuilder<FormPageBloc, FormPageState>(
-        builder: (context, state) => _buildPage(context),
-      ),
-    );
-  }
-
-  Widget _buildPage(BuildContext context) {
-    final bloc = BlocProvider.of<LoginBloc>(context);
-    final formBloc = BlocProvider.of<FormPageBloc>(context);
-
-    return FormPage(
-      formKey: formBloc.formKey,
-      backIcon: true,
-      showAppBar: true,
-      backIconWidget: Icon(
-        Icons.arrow_back_ios,
-        color: ColorResource.primaryColor,
-      ),
-      padding: EdgeInsets.only(left: 20.sp, top: 20.sp, right: 20.sp),
-      logoImage: AssetImageWidget(
-        assetName: ImageResource.logo,
-        width: 150.dp,
-        height: 150.dp,
-      ),
-      bodyWidgets: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(height: 20),
-            CustomTextWidget(
-              text: emailHint,
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              textColor: ColorResource.lableColor,
-              textAlign: TextAlign.left,
-            ),
-            SizedBox(height: 5),
-            CustomTextFormField(
-              focusNode: formBloc.state.emailFocusNode,
-              hintText: "Email",
-              maxLines: 1,
-              onChanged: (value) {
-                formBloc.add(EmailValidationEvent(value));
-              },
-              borderColor: Colors.grey,
-              prefixWidget: Padding(
-                padding: EdgeInsets.only(right: 10, left: 10),
-                child: CustomSvgWidget(assetName: ImageResource.smsSvg),
-              ),
-              validator: (value) {
-                if (CommonUtilMethods.isValueEmpty(value ?? "")) {
-                  return emailValidationMessage;
-                } else if (!CommonUtilMethods.isEmailValid(value!)) {
-                  return emailValidationMessage2;
-                }
-                return null;
-              },
-            ),
-          ],
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomTextWidget(
-                text: passwordHint,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                textColor: ColorResource.lableColor,
-              ),
-              SizedBox(height: 5.dp),
-              CustomTextFormField(
-                focusNode: formBloc.state.passwordFocusNode,
-                hintText: "Password",
-                showPassword: formBloc.state.isPassword,
-                isPassword: true,
-                onChanged: (value) {
-                  formBloc.add(PasswordValidationEvent(value));
-                },
-                borderColor: Colors.grey,
-                prefixWidget: Padding(
-                  padding: EdgeInsets.only(right: 10, left: 10),
-                  child: CustomSvgWidget(assetName: ImageResource.passwordSvg),
-                ),
-                suffixWidget: Padding(
-                  padding: EdgeInsets.only(right: 15, left: 10),
-                  child: CustomSvgWidget(
-                    assetName: formBloc.state.isPassword == false
-                        ? ImageResource.eyeOpenSvg
-                        : ImageResource.eyeCloseSvg,
-                  ),
-                ),
-                suffixTap: () {
-                  AppLogs.showInfoLogs(
-                      "password:${formBloc.state.isPassword}");
-                  formBloc.add(OnPasswordTap(
-                      showPassword: formBloc.state.isPassword == false
-                          ? true
-                          : false));
-                },
-                validator: (value) {
-                  if (CommonUtilMethods.isValueEmpty(value ?? "")) {
-                    return passwordValidationMessage;
-                  } else if (!CommonUtilMethods.isPasswordValid(value!)) {
-                    return passwordLengthValidationMessage;
-                  }
-                  return null;
-                },
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 10.dp,
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 20),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: CustomTextWidget(
-              text: forgotPassword,
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-              textColor: ColorResource.lableColor,
-              onTap: () {},
-            ),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 20, bottom: 40),
-          child: CustomButton(
-            text: loginButton,
-            width: 100.sw,
-            elevation: 2,
-            height: 50,
-            onTap: () {
-              formBloc.add(UnfocusEvent());
-              if (formBloc.formKey.currentState!.validate()) {
-                LoginBloc().add(LoginSubmittedEvent(
-                    email: formBloc.state.email,
-                    password: formBloc.state.password));
-              }
-            },
-          ),
-        ),
-        Center(
-          child: RichText(
-            text: TextSpan(
-              text: dontHaveAccount,
-              style: TextStyle(
-                color: ColorResource.lableColor,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-              ),
-              children: <TextSpan>[
-                TextSpan(
-                  text: " $signUp",
-                  style: TextStyle(
-                    color: ColorResource.buttonColor,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  recognizer: TapGestureRecognizer()..onTap = () {},
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
 
 ## How to use
 
@@ -285,51 +84,68 @@ To use the Project Setup plugin in your Flutter project, you can add it as a dep
 
 ## How to use API Calling
 
-- **Api Repository**: This provides a straightforward method for making API requests. To utilize it, instantiate `ApiRepository` and invoke the `apiCall` method as shown in the example below:
+```Dart
 
-  To use the API calling feature provided by `ApiRepository`, follow the steps below:
+// How to Initialize Api Repository and pass the API URL and headers as project
 
-1. **Import the necessary packages:**
+Future<void> main() async {
+  // ✅ Initialize your plugin API and pass the API URL and headers as project
+  await ApiRepository.init(
+    apiUrl: "",
+    appHeaders: {
+      'authorization': "",
+      'Content-Type': 'application/json',
+      'AppVersion': '1',
+      'DeviceTypeId': Platform.isIOS ? '2' : '1',
+      'accessToken': "",
+      'LanguageCode': 'en',
+    },
+  );
+  runApp(const MyApp());
+}
 
-   Ensure you have the necessary imports at the top of your Dart file:
+```
 
-   ```dart
-   import 'package:project_setup/api_repository.dart';
-   import 'package:flutter/material.dart';
-   ```
+## User Api Calling Funtion
 
-2. **Make an API call:**
+```Dart
 
-   Use the `apiCall` method to make an API request. Pass the necessary parameters like endpoint, method, headers, and body.
 
-   ```dart
-   void fetchData() async {
-     try {
-       ApiResponse response = await apiRepository.apiCall(
-         endpoint,
-         data: {
-             "email": state.email,
-              "password": state.password,
-              },
-         RequestType.post
-       );
-        print('Data: ${response.data}');
-     } catch (e) {
-       print('Exception: $e');
-     }
-   }
-   ```
+var body = {
+  "email": "test@example.com",
+  "password": "Test@123",
+  "deviceToken": "",
+  "deviceType": Platform.isIOS ? 2 : 1,
+  "userType": 1,
+};
 
-3. **Call the `fetchData` method:**
+void callApi() async {
+  try {
+    final response = await ApiRepository().post(
+      endpoint: 'Account/Login',
+      body: body,
+      fromJson: (data) => data as Map<String, dynamic>,
+    );
 
-   Invoke `fetchData` in your widget or service to make the API request.
+    if (response.success && response.data != null) {
+      CommonUtilMethods.showSnackBar(
+        context: context,
+        message: response.message ?? "Login successful",
+      );
+    }
+  } catch (e) {
+    if (context.mounted) {
+      CommonUtilMethods.showSnackBar(
+        context: context,
+        message: e.toString(),
+      );
+    }
+    PrintLogs.showErrorLogs(e.toString());
+  }
+}
 
-   ```dart
-   @override
-   void initState() {
-     super.initState();
-     fetchData();
-   }
-   ```
 
-This example demonstrates a simple API call using the `ApiRepository`. Adjust the endpoint, method, headers, and body according to your API's requirements.
+```
+
+
+

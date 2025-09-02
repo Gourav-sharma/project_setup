@@ -1,6 +1,5 @@
 import '../project_setup.dart';
 
-
 class LogoutDialog extends StatelessWidget {
   final VoidCallback? onLogout;
   final Color? backgroundColor;
@@ -40,7 +39,7 @@ class LogoutDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return AlertDialog(
-      backgroundColor: backgroundColor ?? Colors.grey.withValues(alpha: 1.3),
+      backgroundColor: backgroundColor ?? Colors.white.withValues(alpha: 1.3),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),

@@ -60,9 +60,9 @@ class ApiClient {
   }
 
   String _handleError(DioException error) {
-    AppLogs.showErrorLogs("${error.response?.statusCode}");
-    AppLogs.showErrorLogs("${error.type}");
-    AppLogs.showErrorLogs("${error.message}");
+    PrintLogs.showErrorLogs("${error.response?.statusCode}");
+    PrintLogs.showErrorLogs("${error.type}");
+    PrintLogs.showErrorLogs("${error.message}");
 
 
     var serverMessage ;
@@ -71,7 +71,6 @@ class ApiClient {
       serverMessage = "Server Not Found";
     }else if(error.response?.statusCode == 403){
       serverMessage = error.message??"" ;
-      StorageManager.clearStorage();
     }else{
       serverMessage = error.message??"" ;
     }

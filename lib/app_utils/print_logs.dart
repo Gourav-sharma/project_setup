@@ -1,7 +1,7 @@
 import 'dart:developer';
 import '../project_setup.dart';
 
-class AppLogs {
+class PrintLogs {
   static void showLogs(String tag, String message) {
     if (kDebugMode) {
       log("$tag: $message");

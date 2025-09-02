@@ -38,3 +38,11 @@
 ## 0.0.12
 
 * update according to latest Flutter version
+
+## 0.0.13
+
+* Updated to the latest Flutter version
+
+* Removed unnecessary packages
+
+* Made almost every widget customizable to reduce the need for third-party packages
