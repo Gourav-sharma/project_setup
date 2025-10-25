@@ -5,6 +5,9 @@ class CustomBottomBar extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onBottomTapped;
   final bool showLabel;
+  final Color? backgroundColor;
+  final Color? selectedItemColor;
+  final Color? unselectedItemColor;
 
   const CustomBottomBar({
     super.key,
@@ -12,6 +15,9 @@ class CustomBottomBar extends StatelessWidget {
     required this.currentIndex,
     required this.onBottomTapped,
     this.showLabel = true,
+    this.backgroundColor,
+    this.selectedItemColor,
+    this.unselectedItemColor,
   });
 
   @override
@@ -30,13 +36,13 @@ class CustomBottomBar extends StatelessWidget {
       currentIndex: currentIndex,
       onTap: onBottomTapped,
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: ColorResource.whiteColor,
-      unselectedItemColor: ColorResource.blackColor.withValues(alpha: 0.5),
+      selectedItemColor: selectedItemColor ?? Colors.white,
+      unselectedItemColor: unselectedItemColor ?? Colors.grey,
       selectedFontSize: showLabel ? 15.sp : 0,
       unselectedFontSize: showLabel ? 15.sp : 0,
       showSelectedLabels: showLabel,
       showUnselectedLabels: showLabel,
-      backgroundColor: ColorResource.appThemeColor,
+      backgroundColor: backgroundColor ?? Colors.white,
     );
   }
 }

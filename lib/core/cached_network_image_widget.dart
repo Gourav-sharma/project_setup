@@ -46,7 +46,7 @@ class CachedNetworkImageWidget extends StatelessWidget {
         ),
         child: Center(
           child: CustomSvgWidget(
-            assetName: placeHolder ?? ImageResource.logo,
+            assetName: placeHolder ?? "",
             height: placeHolderSize,
             width: placeHolderSize,
             fit: fit ?? BoxFit.contain,
@@ -90,8 +90,8 @@ class CachedNetworkImageWidget extends StatelessWidget {
         height: height ?? MediaQuery.of(context).size.width / 1.8,
         decoration: BoxDecoration(
           borderRadius: borderRadius ?? BorderRadius.circular(radius ?? 12),
-          color: ColorResource.blackColor.withAlpha(30),
-          border: Border.all(color: ColorResource.buttonColor, width: .5),
+          color: Colors.black.withAlpha(30),
+          border: Border.all(color: Colors.blueAccent, width: .5),
         ),
         child: Center(
           child: SizedBox(

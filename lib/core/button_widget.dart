@@ -44,14 +44,14 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: isLoading ? null : onTap,
         style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor ?? ColorResource.buttonColor,
-          foregroundColor: textColor ?? ColorResource.whiteColor,
+          backgroundColor: backgroundColor ?? Colors.blueAccent,
+          foregroundColor: textColor ?? Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(borderRadius ?? 60),
             ),
             side: showBorder
-                ? BorderSide(color: borderColor ?? ColorResource.buttonColor)
+                ? BorderSide(color: borderColor ?? Colors.blueAccent)
                 : BorderSide.none,
           ),
           elevation: elevation ?? 0.0,
@@ -63,7 +63,7 @@ class CustomButton extends StatelessWidget {
           height: 20,
           width: 20,
           child: CircularProgressIndicator(
-            color: textColor ?? ColorResource.whiteColor,
+            color: textColor ?? Colors.white,
             strokeWidth: 2,
           ),
         )
@@ -77,7 +77,7 @@ class CustomButton extends StatelessWidget {
             ],
             CustomTextWidget(
               text: text,
-              textColor: textColor ?? ColorResource.whiteColor,
+              textColor: textColor ?? Colors.white,
               fontSize: fontSize ?? 15.sp,
               fontWeight: FontWeight.w500,
             ),
@@ -114,7 +114,7 @@ class IconButtonWidget extends CustomButton {
     height: height,
     borderRadius: borderRadius,
     showBorder: showBorder,
-    leading: Icon(icon, color: textColor ?? ColorResource.whiteColor, size: 18),
+    leading: Icon(icon, color: textColor ?? Colors.white, size: 18),
   );
 }
 
@@ -153,7 +153,7 @@ class LoaderButton extends CustomButton {
       height: 18,
       width: 18,
       child: CircularProgressIndicator(
-        color: textColor ?? ColorResource.whiteColor,
+        color: textColor ?? Colors.white,
         strokeWidth: 2,
       ),
     )
@@ -176,9 +176,9 @@ class OutlinedButtonWidget extends CustomButton {
   }) : super(
     text: text,
     onTap: onTap,
-    textColor: textColor ?? ColorResource.buttonColor,
+    textColor: textColor ?? Colors.blueAccent,
     backgroundColor: Colors.transparent,
-    borderColor: borderColor ?? ColorResource.buttonColor,
+    borderColor: borderColor ?? Colors.blueAccent,
     showBorder: true,
     width: width,
     height: height,

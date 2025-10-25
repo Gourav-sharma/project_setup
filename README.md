@@ -19,7 +19,6 @@ Project Setup is a Flutter plugin which provides a pre-built setup for a typical
 
 ## Features
 
-- **Theme**: It provides a pre-built theme with a set of colors and fonts that you can use in your project.
 - **Dialogs**: It provides a set of pre-built dialogs that you can use to alert the user.
 - **Logger**: It provides a logger that you can use to log messages in your project.
 - **Network**: It provides a set of network utilities that you can use to make HTTP requests. You can easily make API calls and get a response from the server.

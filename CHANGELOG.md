@@ -46,3 +46,7 @@
 * Removed unnecessary packages
 
 * Made almost every widget customizable to reduce the need for third-party packages
+
+## 0.0.14
+
+* Remove unused packages and make code more optimized and more flexible to custom use

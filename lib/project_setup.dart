@@ -42,11 +42,6 @@ export 'app_utils/multipart_request.dart';
 
 //style
 export 'style_theme/app_dimension.dart';
-export 'style_theme/color_resource.dart';
-export 'style_theme/image_resource.dart';
-export 'style_theme/string_resource.dart';
-export 'style_theme/light_theme.dart';
-export 'style_theme/dark_theme.dart';
 export 'package:cached_network_image/cached_network_image.dart';
 
 

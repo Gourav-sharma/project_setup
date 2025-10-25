@@ -5,11 +5,12 @@ class CustomBottomSheet {
     required BuildContext context,
     required Widget Function(BuildContext, void Function(Future<T> Function())) builder,
     bool isDarkTheme = false,
+    Color? backgroundColor = Colors.black,
   }) {
     return showModalBottomSheet<T>(
       context: context,
       isScrollControlled: true, // allows full height scrollable sheet
-      backgroundColor: isDarkTheme ? ColorResource.blackColor : Colors.white,
+      backgroundColor: isDarkTheme ? backgroundColor : Colors.white,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(12),

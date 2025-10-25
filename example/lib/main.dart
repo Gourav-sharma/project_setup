@@ -43,8 +43,6 @@ class _MyAppState extends State<MyApp> {
       child:MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        theme: CommonUtilMethods.manageTheme(false),
-        darkTheme: CommonUtilMethods.manageTheme(true),
         themeMode: ThemeMode.light,
         home: const Center(
           child: Text("Hello World"),

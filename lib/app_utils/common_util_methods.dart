@@ -9,7 +9,8 @@ class CommonUtilMethods {
     return null;
   }
 
-  static String? isEmailValid(String email,{String? message}) {
+  static String? isEmailValid(String email,{String? message,String? emailValidationMessage="Please enter valid email",
+  String? emailValidationMessage2="Please enter valid email"}) {
     if(email.isEmpty){
       return emailValidationMessage;
     }else if (!RegExp(
@@ -21,7 +22,9 @@ class CommonUtilMethods {
   }
 
   static String? isPasswordValid(String password,
-      {String? message,String? passwordLFormatMessage,int? passwordLength=8}) {
+      {String? message,String? passwordLFormatMessage,int? passwordLength=8,
+      String? passwordValidationMessage="Please enter valid password",
+      String? passwordLengthValidationMessage="Password should be at least 8 characters"}) {
     if(password.isEmpty){
       return passwordValidationMessage;
     }else if (password.length < passwordLength!) {
@@ -35,7 +38,9 @@ class CommonUtilMethods {
   }
 
   static String? isConfirmPasswordValid(String confirmPassword,String password,
-      {String? message}) {
+      {String? message,
+      String? confirmPasswordValidationMessage="Please enter valid confirm password",
+      String? confirmPasswordValidationMessage2="Password and confirm password should be same"}) {
     if(confirmPassword.isEmpty){
       return confirmPasswordValidationMessage;
     }else if(password!=confirmPassword){
@@ -44,7 +49,9 @@ class CommonUtilMethods {
     return null;
   }
 
-  static String? isPhoneNumberValid(String phoneNumber,{String? message,int? numberLength=10}) {
+  static String? isPhoneNumberValid(String phoneNumber,{String? message,int? numberLength=10,
+  String? numberValidationMessage="Please enter valid phone number",
+  String? numberValidationMessage2="Phone number should be 10 digits"}) {
     if(phoneNumber.isEmpty){
       return numberValidationMessage;
     }else if (phoneNumber.length != numberLength) {
@@ -75,13 +82,6 @@ class CommonUtilMethods {
     ));
   }
 
-
-  static ThemeData manageTheme(bool isDarkTheme) {
-
-    return isDarkTheme
-        ? DarkTheme.theme
-        : LightTheme.theme;
-  }
 
 
 static Future<bool> closeKeyboard(BuildContext context) async {

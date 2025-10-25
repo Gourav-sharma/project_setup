@@ -7,6 +7,7 @@ class LogoutDialog extends StatelessWidget {
   final Color? contentColor;
   final Color? cancelColor;
   final Color? confirmColor;
+  final Color? borderColor;
   final String? title;
   final String? content;
   final String? cancelText;
@@ -25,6 +26,7 @@ class LogoutDialog extends StatelessWidget {
     this.contentColor,
     this.cancelColor,
     this.confirmColor,
+    this.borderColor = Colors.grey,
     this.title,
     this.content,
     this.cancelText,
@@ -57,7 +59,7 @@ class LogoutDialog extends StatelessWidget {
          text: title ?? 'Log Out',
             fontSize: titleFontSize ?? 18.sp,
             fontWeight: FontWeight.w500,
-            textColor: titleColor ?? ColorResource.blackColor,
+            textColor: titleColor ?? Colors.black,
         ),
       ),
       content: Column(
@@ -71,12 +73,12 @@ class LogoutDialog extends StatelessWidget {
               maxLines: 2,
               textAlign: TextAlign.center,
               fontWeight: FontWeight.w400,
-              textColor: contentColor ?? ColorResource.blackColor,
+              textColor: contentColor ?? Colors.black,
             ),
           ),
           const SizedBox(height: 10),
           Divider(
-            color:ColorResource.greyColor.withValues(alpha: 0.3),
+            color:borderColor?? Colors.grey.withValues(alpha: 0.3),
             height: 0.2,
           ),
 
@@ -91,7 +93,7 @@ class LogoutDialog extends StatelessWidget {
                     text: cancelText ?? "Cancel",
                     fontSize: cancelFontSize ?? 16.sp,
                     fontWeight: FontWeight.w400,
-                    textColor: cancelColor ?? ColorResource.primaryColor,
+                    textColor: cancelColor ?? Colors.blueAccent,
                     onTap: () {
                       Navigator.of(context).pop();
                     },
@@ -99,7 +101,7 @@ class LogoutDialog extends StatelessWidget {
                 ),
 
                 VerticalDivider(
-                  color:ColorResource.greyColor.withValues(alpha: 0.3),
+                  color:borderColor?? Colors.grey.withValues(alpha: 0.3),
                   width: 0.2,
                 ),
 
@@ -110,7 +112,7 @@ class LogoutDialog extends StatelessWidget {
                     text: confirmText ?? 'Sign Out',
                     fontSize: confirmFontSize ?? 16.sp,
                     fontWeight: FontWeight.w400,
-                    textColor: confirmColor ?? ColorResource.primaryColor,
+                    textColor: confirmColor ?? Colors.blueAccent,
                     onTap: onLogout,
                   ),
                 ),

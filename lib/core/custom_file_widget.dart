@@ -44,7 +44,7 @@ class CustomFileWidget extends StatelessWidget {
         ),
         child: Center(
           child: CustomSvgWidget(
-            assetName: placeHolder ?? ImageResource.logo,
+            assetName: placeHolder ?? "",
             height: placeHolderSize,
             width: placeHolderSize,
             fit: fit ?? BoxFit.contain,

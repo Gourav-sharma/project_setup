@@ -16,6 +16,9 @@ class ListWidget extends StatelessWidget {
   final Axis? scrollDirection;
   final EdgeInsets? padding;
   final bool isLoadingMore; // 👈 new flag
+  final Color? dividerColor;
+  final Color? iconColor;
+  final Color? textColor;
 
   const ListWidget({
     super.key,
@@ -29,6 +32,9 @@ class ListWidget extends StatelessWidget {
     this.reverse,
     this.padding,
     this.isLoadingMore = false, // default false
+    this.dividerColor = Colors.grey,
+    this.iconColor = Colors.grey,
+    this.textColor = Colors.grey,
   });
 
   @override
@@ -75,7 +81,7 @@ class ListWidget extends StatelessWidget {
         }
         return Divider(
           height: 0.2,
-          color: ColorResource.borderColor,
+          color: dividerColor,
         );
       },
     );
@@ -171,11 +177,15 @@ class _LoaderFooter extends StatelessWidget {
 class EmptyWidget extends StatelessWidget {
   final String message;
   final IconData icon;
+  final Color? iconColor;
+  final Color? textColor;
 
   const EmptyWidget({
     super.key,
     this.message = "No items available",
     this.icon = Icons.inbox_outlined,
+    this.iconColor = Colors.grey,
+    this.textColor = Colors.grey,
   });
 
   @override
@@ -184,13 +194,13 @@ class EmptyWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 48, color: ColorResource.greyColor),
+          Icon(icon, size: 48, color: iconColor),
           const SizedBox(height: 12),
           Text(
             message,
             style: TextStyle(
               fontSize: 14,
-              color: ColorResource.greyColor,
+              color: textColor,
             ),
           ),
         ],

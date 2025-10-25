@@ -15,6 +15,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? initialValue;
   final String? helperText;
   final Color? borderColor;
+  final Color? errorBorderColor;
   final Widget? prefixWidget;
   final Widget? suffixWidget;
   final VoidCallback? suffixTap;
@@ -36,7 +37,8 @@ class CustomTextFormField extends StatelessWidget {
     this.errorText,
     this.initialValue,
     this.helperText,
-    this.borderColor,
+    this.borderColor = Colors.grey,
+    this.errorBorderColor = Colors.red ,
     this.prefixWidget,
     this.suffixWidget,
     this.suffixTap,
@@ -70,19 +72,19 @@ class CustomTextFormField extends StatelessWidget {
           helperText: helperText,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: BorderSide(color: borderColor ?? ColorResource.borderColor),
+            borderSide: BorderSide(color: borderColor  ?? Colors.grey),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: BorderSide(color: borderColor ?? ColorResource.borderColor),
+            borderSide: BorderSide(color: borderColor ?? Colors.grey),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: BorderSide(color: borderColor ?? ColorResource.greyColor),
+            borderSide: BorderSide(color: borderColor ?? Colors.grey),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: const BorderSide(color: ColorResource.appThemeColor),
+            borderSide:  BorderSide(color: errorBorderColor ?? Colors.red),
           ),
           prefixIcon: prefixWidget,
           suffixIcon: suffixWidget != null

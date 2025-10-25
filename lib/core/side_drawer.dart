@@ -2,10 +2,12 @@ import '../project_setup.dart';
 
 class SideDrawer extends StatelessWidget {
   final Widget child;
+  final Color? backgroundColor ;
 
   const SideDrawer({
     super.key,
     required this.child,
+    this.backgroundColor = Colors.white,
   });
 
   @override
@@ -13,7 +15,7 @@ class SideDrawer extends StatelessWidget {
     return Container(
       width: 85.sw,
       height:100.sh,
-      color:ColorResource.appThemeColor,
+      color:backgroundColor,
       child: Drawer(
         backgroundColor:Colors.transparent,
         child: SingleChildScrollView(
