@@ -16,6 +16,8 @@ class LogoutDialog extends StatelessWidget {
   final dynamic contentFontSize;
   final dynamic cancelFontSize;
   final dynamic confirmFontSize;
+  final bool? buttonInRow;
+  final bool? divider;
 
 
   const LogoutDialog({
@@ -35,11 +37,12 @@ class LogoutDialog extends StatelessWidget {
     this.contentFontSize,
     this.cancelFontSize,
     this.confirmFontSize,
+    this.buttonInRow,
+    this.divider,
     });
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return AlertDialog(
       backgroundColor: backgroundColor ?? Colors.white.withValues(alpha: 1.3),
       shape: RoundedRectangleBorder(
@@ -50,26 +53,26 @@ class LogoutDialog extends StatelessWidget {
       alignment: Alignment.center,
       titlePadding: EdgeInsets.only(top: 25, left: 15, right: 15),
       titleTextStyle: TextStyle(
-        color: theme.brightness == Brightness.dark ? Colors.white : Colors.black,
+        color: titleColor ?? Colors.black,
         fontSize: 18,
         fontWeight: FontWeight.w500,
       ),
-      title: Center(
+      title: title == null ? null : Center(
         child: CustomTextWidget(
          text: title ?? 'Log Out',
-            fontSize: titleFontSize ?? 18.sp,
+            fontSize: titleFontSize ?? 18.sP,
             fontWeight: FontWeight.w500,
             textColor: titleColor ?? Colors.black,
         ),
       ),
-      content: Column(
+      content:  Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
             padding:  EdgeInsets.only(top: 10, left: 25, right: 25,bottom: 20),
             child: CustomTextWidget(
              text: content ?? 'Are you sure you want to logout?',
-              fontSize: contentFontSize ?? 18.sp,
+              fontSize: contentFontSize ?? 18.sP,
               maxLines: 2,
               textAlign: TextAlign.center,
               fontWeight: FontWeight.w400,
@@ -81,8 +84,7 @@ class LogoutDialog extends StatelessWidget {
             color:borderColor?? Colors.grey.withValues(alpha: 0.3),
             height: 0.2,
           ),
-
-          IntrinsicHeight(
+         buttonInRow == true ? IntrinsicHeight(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -91,7 +93,7 @@ class LogoutDialog extends StatelessWidget {
                   child: CustomTextWidget(
                     textAlign: TextAlign.center,
                     text: cancelText ?? "Cancel",
-                    fontSize: cancelFontSize ?? 16.sp,
+                    fontSize: cancelFontSize ?? 16.sP,
                     fontWeight: FontWeight.w400,
                     textColor: cancelColor ?? Colors.blueAccent,
                     onTap: () {
@@ -110,7 +112,7 @@ class LogoutDialog extends StatelessWidget {
                   child: CustomTextWidget(
                     textAlign: TextAlign.center,
                     text: confirmText ?? 'Sign Out',
-                    fontSize: confirmFontSize ?? 16.sp,
+                    fontSize: confirmFontSize ?? 16.sP,
                     fontWeight: FontWeight.w400,
                     textColor: confirmColor ?? Colors.blueAccent,
                     onTap: onLogout,
@@ -118,7 +120,41 @@ class LogoutDialog extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ):
+             Column(
+              children: [
+                Container(
+                  margin:  EdgeInsets.only(top: 10,bottom: 12),
+                  child: CustomTextWidget(
+                    textAlign: TextAlign.center,
+                    text: cancelText ?? "Cancel",
+                    fontSize: cancelFontSize ?? 16.sP,
+                    fontWeight: FontWeight.w400,
+                    textColor: cancelColor ?? Colors.blueAccent,
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ),
+
+               divider==true? Divider(
+                  color:borderColor?? Colors.grey.withValues(alpha: 0.3),
+                  height: 0.2,
+                ):SizedBox(),
+
+                Container(
+                  margin:  EdgeInsets.only(top: 10,bottom: 12),
+                  child: CustomTextWidget(
+                    textAlign: TextAlign.center,
+                    text: confirmText ?? 'Sign Out',
+                    fontSize: confirmFontSize ?? 16.sP,
+                    fontWeight: FontWeight.w400,
+                    textColor: confirmColor ?? Colors.blueAccent,
+                    onTap: onLogout,
+                  ),
+                ),
+              ],
+             )
         ],
       ),
       actionsAlignment: MainAxisAlignment.spaceEvenly,
@@ -143,7 +179,9 @@ class LogoutDialog extends StatelessWidget {
          dynamic titleFontSize,
          dynamic contentFontSize,
          dynamic cancelFontSize,
-         dynamic confirmFontSize
+         dynamic confirmFontSize,
+         bool? divider,
+         bool? buttonInRow,
      }) {
     showDialog(
       context: context,
@@ -164,6 +202,8 @@ class LogoutDialog extends StatelessWidget {
           contentFontSize: contentFontSize,
           cancelFontSize: cancelFontSize,
           confirmFontSize: confirmFontSize,
+          divider: divider,
+          buttonInRow: buttonInRow,
         ); // Now const since no parameters
       },
     );

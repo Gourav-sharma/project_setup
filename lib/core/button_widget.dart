@@ -88,66 +88,41 @@ class CustomButton extends StatelessWidget {
   }
 }
 
-//
-// ✅ Specialized Buttons
-//
-
 /// Button with Icon
-class IconButtonWidget extends CustomButton {
-  IconButtonWidget({
+class CustomIconButton extends CustomButton {
+  CustomIconButton({
     super.key,
-    required String text,
+    required super.text,
     required IconData icon,
-    VoidCallback? onTap,
-    Color? backgroundColor,
-    Color? textColor,
-    double? width,
-    double? height,
-    double? borderRadius,
-    bool showBorder = false,
+    super.onTap,
+    super.backgroundColor,
+    super.textColor,
+    super.width,
+    super.height,
+    super.borderRadius,
+    super.showBorder,
   }) : super(
-    text: text,
-    onTap: onTap,
-    backgroundColor: backgroundColor,
-    textColor: textColor,
-    width: width,
-    height: height,
-    borderRadius: borderRadius,
-    showBorder: showBorder,
     leading: Icon(icon, color: textColor ?? Colors.white, size: 18),
   );
 }
 
 /// Loader Button
-class LoaderButton extends CustomButton {
-  LoaderButton({
+class CustomLoaderButton extends CustomButton {
+  CustomLoaderButton({
     super.key,
-    required String text,
-    required bool isLoading,
-    VoidCallback? onTap,
-    Color? backgroundColor,
-    Color? textColor,
-    double? width,
-    double? height,
-    double? fontSize,
-    double? borderRadius,
-    double? elevation,
-    EdgeInsetsGeometry? margin,
-    EdgeInsetsGeometry? padding,
+    required super.text,
+    required super.isLoading,
+    super.onTap,
+    super.backgroundColor,
+    super.textColor,
+    super.width,
+    super.height,
+    super.fontSize,
+    super.borderRadius,
+    super.elevation,
+    super.margin,
+    super.padding,
   }) : super(
-    text: text,
-    onTap: onTap,
-    backgroundColor: backgroundColor,
-    textColor: textColor,
-    width: width,
-    height: height,
-    fontSize: fontSize,
-    borderRadius: borderRadius,
-    elevation: elevation,
-    margin: margin,
-    padding: padding,
-    isLoading: isLoading, // 🔑 use base class loader toggle
-    // show loader **beside** text
     leading: isLoading
         ? SizedBox(
       height: 18,
@@ -161,27 +136,21 @@ class LoaderButton extends CustomButton {
   );
 }
 
-
 /// Button with Border (Outline Style)
-class OutlinedButtonWidget extends CustomButton {
-  OutlinedButtonWidget({
+class CustomOutlinedButton extends CustomButton {
+  const CustomOutlinedButton({
     super.key,
-    required String text,
-    VoidCallback? onTap,
+    required super.text,
+    super.onTap,
     Color? textColor,
     Color? borderColor,
-    double? width,
-    double? height,
-    double? borderRadius,
+    super.width,
+    super.height,
+    super.borderRadius,
   }) : super(
-    text: text,
-    onTap: onTap,
     textColor: textColor ?? Colors.blueAccent,
     backgroundColor: Colors.transparent,
     borderColor: borderColor ?? Colors.blueAccent,
     showBorder: true,
-    width: width,
-    height: height,
-    borderRadius: borderRadius,
   );
 }

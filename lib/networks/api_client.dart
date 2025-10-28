@@ -65,7 +65,7 @@ class ApiClient {
     PrintLogs.showErrorLogs("${error.message}");
 
 
-    var serverMessage ;
+    dynamic serverMessage ;
 
     if(error.response?.statusCode == 400 || error.response?.statusCode == 401 || error.response?.statusCode == 404){
       serverMessage = "Server Not Found";

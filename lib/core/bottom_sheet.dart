@@ -62,7 +62,7 @@ class _BottomSheetContentState<T> extends State<_BottomSheetContent<T>> {
             if (_isLoading)
               Positioned.fill(
                 child: Container(
-                  color: Colors.black.withOpacity(0.3),
+                  color: Colors.black.withAlpha(30),
                   child: const Center(
                     child: CircularProgressIndicator(),
                   ),

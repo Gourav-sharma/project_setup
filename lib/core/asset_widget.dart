@@ -1,13 +1,13 @@
 import '../project_setup.dart';
 
-class AssetImageWidget extends StatelessWidget {
+class CustomAssetWidget extends StatelessWidget {
   final String assetName;
   final double? width;
   final double? height;
   final BoxFit fit;
   final Color? color;
 
-  const AssetImageWidget({
+  const CustomAssetWidget({
     super.key,
     required this.assetName,
     this.width,

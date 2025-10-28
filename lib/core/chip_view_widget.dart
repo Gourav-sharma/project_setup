@@ -1,13 +1,13 @@
 import '../project_setup.dart';
 
-class CustomChipWidget extends StatelessWidget {
+class CustomChip extends StatelessWidget {
   final Axis direction;
   final double spacing;
   final double runSpacing;
   final WrapAlignment alignment;
   final List<Widget> children;
 
-  const CustomChipWidget({
+  const CustomChip({
     super.key,
     required this.children,
     this.direction = Axis.horizontal,

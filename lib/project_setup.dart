@@ -1,7 +1,6 @@
 import 'project_setup_platform_interface.dart';
 
 
-
 export 'dart:convert';
 export 'dart:io';
 export 'package:flutter/material.dart';
@@ -19,6 +18,9 @@ export 'networks/api_client.dart';
 export 'networks/custom_interceptors.dart';
 export 'networks/api_repo.dart';
 export 'networks/response_model.dart';
+
+//responsive
+export 'package:flutter_screenutil/flutter_screenutil.dart';
 
 //storage
 export 'keys/storage_keys.dart';
@@ -43,7 +45,6 @@ export 'app_utils/multipart_request.dart';
 //style
 export 'style_theme/app_dimension.dart';
 export 'package:cached_network_image/cached_network_image.dart';
-
 
 
 

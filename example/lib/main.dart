@@ -1,5 +1,4 @@
 import 'package:project_setup/project_setup.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 Future<void> main() async {

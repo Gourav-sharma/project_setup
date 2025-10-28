@@ -1,6 +1,6 @@
 import '../project_setup.dart';
 
-class CommonBodyWidget extends StatelessWidget {
+class CustomBodyWidget extends StatelessWidget {
   final Key? scaffoldKey;
   final Widget? child;
   final Widget? drawerWidget;
@@ -42,7 +42,7 @@ class CommonBodyWidget extends StatelessWidget {
   final EdgeInsetsGeometry? userImageWidgetPadding;
   final Widget? bottomChildWidget;
 
-  const CommonBodyWidget({
+  const CustomBodyWidget({
     super.key,
     this.scaffoldKey,
     this.child,

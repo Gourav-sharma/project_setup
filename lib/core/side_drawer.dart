@@ -13,8 +13,8 @@ class SideDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 85.sw,
-      height:100.sh,
+      width: 85.sW,
+      height:100.sH,
       color:backgroundColor,
       child: Drawer(
         backgroundColor:Colors.transparent,

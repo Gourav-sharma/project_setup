@@ -1,6 +1,7 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'project_setup_method_channel.dart';
 
+
 abstract class ProjectSetupPlatform extends PlatformInterface {
   /// Constructs a ProjectSetupPlatform.
   ProjectSetupPlatform() : super(token: _token);

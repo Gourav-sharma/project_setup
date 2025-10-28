@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 /// ------------------
 /// 1. Normal Alert Dialog
 /// ------------------
-class NormalAlertDialog extends StatelessWidget {
+class CustomNormalDialog extends StatelessWidget {
   final String? title;
   final Widget? titleWidget;
   final String? message;
@@ -11,7 +11,7 @@ class NormalAlertDialog extends StatelessWidget {
   final String okText;
   final VoidCallback? onOk;
 
-  const NormalAlertDialog({
+  const CustomNormalDialog({
     super.key,
     this.title,
     this.titleWidget,
@@ -42,7 +42,8 @@ class NormalAlertDialog extends StatelessWidget {
   }
 
   static void show(
-      BuildContext context, {
+      BuildContext context,
+      {
         String? title,
         Widget? titleWidget,
         String? message,
@@ -52,7 +53,7 @@ class NormalAlertDialog extends StatelessWidget {
       }) {
     showDialog(
       context: context,
-      builder: (_) => NormalAlertDialog(
+      builder: (_) => CustomNormalDialog(
         title: title,
         titleWidget: titleWidget,
         message: message,
@@ -67,7 +68,7 @@ class NormalAlertDialog extends StatelessWidget {
 /// ------------------
 /// 2. Confirmation Dialog
 /// ------------------
-class ConfirmationAlertDialog extends StatelessWidget {
+class CustomConfirmationDialog extends StatelessWidget {
   final String? title;
   final Widget? titleWidget;
   final String? message;
@@ -77,7 +78,7 @@ class ConfirmationAlertDialog extends StatelessWidget {
   final VoidCallback onConfirm;
   final VoidCallback? onCancel;
 
-  const ConfirmationAlertDialog({
+  const CustomConfirmationDialog({
     super.key,
     this.title,
     this.titleWidget,
@@ -129,7 +130,7 @@ class ConfirmationAlertDialog extends StatelessWidget {
       }) {
     showDialog(
       context: context,
-      builder: (_) => ConfirmationAlertDialog(
+      builder: (_) => CustomConfirmationDialog(
         title: title,
         titleWidget: titleWidget,
         message: message,

@@ -1,6 +1,6 @@
 import '../project_setup.dart';
 
-class CachedNetworkImageWidget extends StatelessWidget {
+class CustomNetworkImage extends StatelessWidget {
   final String? imageUrl;
   final double? width;
   final double? height;
@@ -14,7 +14,7 @@ class CachedNetworkImageWidget extends StatelessWidget {
   final Color? placeHolderColor;
   final String? placeHolder;
 
-  const CachedNetworkImageWidget({
+  const CustomNetworkImage({
     super.key,
     this.imageUrl,
     this.width,

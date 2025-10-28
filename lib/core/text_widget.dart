@@ -47,7 +47,7 @@ class CustomTextWidget extends StatelessWidget {
 }
 
 /// 1. Text with Row (label + value)
-class RowTextWidget extends StatelessWidget {
+class CustomRowTextWidget extends StatelessWidget {
   final String label;
   final String value;
   final Color? labelColor;
@@ -57,7 +57,7 @@ class RowTextWidget extends StatelessWidget {
   final FontWeight? valueWeight;
   final String? fontFamily;
 
-  const RowTextWidget({
+  const CustomRowTextWidget({
     super.key,
     required this.label,
     required this.value,
@@ -96,14 +96,14 @@ class RowTextWidget extends StatelessWidget {
 }
 
 /// 2. Underline Text
-class UnderlineTextWidget extends StatelessWidget {
+class CustomUnderlineTextWidget extends StatelessWidget {
   final String text;
   final Color? textColor;
   final double fontSize;
   final FontWeight? fontWeight;
   final String? fontFamily;
 
-  const UnderlineTextWidget({
+  const CustomUnderlineTextWidget({
     super.key,
     required this.text,
     this.textColor,
@@ -126,7 +126,7 @@ class UnderlineTextWidget extends StatelessWidget {
 }
 
 /// 3. Read More Text
-class ReadMoreTextWidget extends StatefulWidget {
+class CustomReadMoreTextWidget extends StatefulWidget {
   final String text;
   final int trimLines;
   final Color? textColor;
@@ -134,7 +134,7 @@ class ReadMoreTextWidget extends StatefulWidget {
   final FontWeight? fontWeight;
   final String? fontFamily;
 
-  const ReadMoreTextWidget({
+  const CustomReadMoreTextWidget({
     super.key,
     required this.text,
     this.trimLines = 2,
@@ -145,10 +145,10 @@ class ReadMoreTextWidget extends StatefulWidget {
   });
 
   @override
-  State<ReadMoreTextWidget> createState() => _ReadMoreTextWidgetState();
+  State<CustomReadMoreTextWidget> createState() => _CustomReadMoreTextWidgetState();
 }
 
-class _ReadMoreTextWidgetState extends State<ReadMoreTextWidget> {
+class _CustomReadMoreTextWidgetState extends State<CustomReadMoreTextWidget> {
   bool isExpanded = false;
 
   @override

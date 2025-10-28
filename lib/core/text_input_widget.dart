@@ -1,7 +1,7 @@
 import '../project_setup.dart';
 
 /// ✅ Base Common Input
-class CustomTextFormField extends StatelessWidget {
+class CustomInputField extends StatelessWidget {
   final TextEditingController? controller;
   final bool obscureText;
   final double borderRadius;
@@ -23,7 +23,7 @@ class CustomTextFormField extends StatelessWidget {
   final Function(String)? onChanged;
   final FormFieldValidator<String>? validator;
 
-  const CustomTextFormField({
+  const CustomInputField({
     super.key,
     this.controller,
     this.obscureText = false,
@@ -102,80 +102,66 @@ class CustomTextFormField extends StatelessWidget {
 //
 
 /// Input with Icon
-class InputTextWithIcon extends CustomTextFormField {
-  InputTextWithIcon({
+class CustomInputWithIcon extends CustomInputField {
+  const CustomInputWithIcon({
     super.key,
-    TextEditingController? controller,
+    super.controller,
     required Widget icon,
     String? hint,
     String? label,
-    FocusNode? focusNode,
-    Color? borderColor,
-    Function(String)? onChanged,
-    FormFieldValidator<String>? validator,
+    super.focusNode,
+    super.borderColor = null,
+    super.onChanged,
+    super.validator,
   }) : super(
-    controller: controller,
     prefixWidget: icon,
     hintText: hint,
     labelText: label,
-    focusNode: focusNode,
-    borderColor: borderColor,
-    onChanged: onChanged,
-    validator: validator,
   );
 }
 
 /// Input without Icon
-class InputTextWithoutIcon extends CustomTextFormField {
-  InputTextWithoutIcon({
+class CustomInputWithoutIcon extends CustomInputField {
+  const CustomInputWithoutIcon({
     super.key,
-    TextEditingController? controller,
+    super.controller,
     String? hint,
     String? label,
-    FocusNode? focusNode,
-    Color? borderColor,
-    Function(String)? onChanged,
-    FormFieldValidator<String>? validator,
+    super.focusNode,
+    super.borderColor = null,
+    super.onChanged,
+    super.validator,
   }) : super(
-    controller: controller,
     hintText: hint,
     labelText: label,
-    focusNode: focusNode,
-    borderColor: borderColor,
-    onChanged: onChanged,
-    validator: validator,
   );
 }
 
 
 /// Email Field
 /// Email Field
-class EmailInputText extends CustomTextFormField {
-  EmailInputText({
+class CustomEmailInputText extends CustomInputField {
+  const CustomEmailInputText({
     super.key,
-    TextEditingController? controller,
+    super.controller,
+    super.readOnly,
     String? hint = "Enter email",
-    FocusNode? focusNode,
-    Color? borderColor,
+    super.focusNode,
+    super.borderColor = null,
     Widget? prefixIcon, // ✅ new optional param
-    Function(String)? onChanged,
-    FormFieldValidator<String>? validator,
+    super.onChanged,
+    super.validator,
   }) : super(
-    controller: controller,
     hintText: hint,
-    focusNode: focusNode,
-    borderColor: borderColor,
     keyBoardType: TextInputType.emailAddress,
-    prefixWidget: prefixIcon ?? const Icon(Icons.email_outlined), // ✅ fallback
-    onChanged: onChanged,
-    validator: validator,
+    prefixWidget: prefixIcon ?? const Icon(Icons.email_outlined),
   );
 }
 
 
 
 /// Password Field
-class PasswordInputText extends StatefulWidget {
+class CustomPasswordInputText extends StatefulWidget {
   final TextEditingController? controller;
   final String? hint;
   final String? label;
@@ -185,7 +171,7 @@ class PasswordInputText extends StatefulWidget {
   final Function(String)? onChanged;
   final FormFieldValidator<String>? validator;
 
-  const PasswordInputText({
+  const CustomPasswordInputText({
     super.key,
     this.controller,
     this.hint,
@@ -198,15 +184,15 @@ class PasswordInputText extends StatefulWidget {
   });
 
   @override
-  State<PasswordInputText> createState() => _PasswordInputTextState();
+  State<CustomPasswordInputText> createState() => _CustomPasswordInputTextState();
 }
 
-class _PasswordInputTextState extends State<PasswordInputText> {
+class _CustomPasswordInputTextState extends State<CustomPasswordInputText> {
   bool _obscure = true;
 
   @override
   Widget build(BuildContext context) {
-    return CustomTextFormField(
+    return CustomInputField(
       controller: widget.controller,
       hintText: widget.hint,
       labelText: widget.label,
@@ -223,51 +209,42 @@ class _PasswordInputTextState extends State<PasswordInputText> {
 }
 
 /// Phone Field
-class PhoneInputText extends CustomTextFormField {
-  PhoneInputText({
+class CustomPhoneInputText extends CustomInputField {
+  const CustomPhoneInputText({
     super.key,
-    TextEditingController? controller,
+    super.controller,
+    super.readOnly,
     String? hint = "Enter phone number",
-    FocusNode? focusNode,
-    Color? borderColor,
+    super.focusNode,
+    super.borderColor = null,
     Widget? prefixIcon, // ✅ optional
-    Function(String)? onChanged,
-    FormFieldValidator<String>? validator,
+    super.onChanged,
+    super.validator,
   }) : super(
-    controller: controller,
     hintText: hint,
-    focusNode: focusNode,
-    borderColor: borderColor,
     keyBoardType: TextInputType.phone,
-    prefixWidget: prefixIcon ?? const Icon(Icons.phone), // ✅ default
-    onChanged: onChanged,
-    validator: validator,
+    prefixWidget: prefixIcon ?? const Icon(Icons.phone),
   );
 }
 
 /// Multiline Input (e.g., About Us)
-class MultilineInputText extends CustomTextFormField {
-  MultilineInputText({
+class CustomMultilineInputText extends CustomInputField {
+  const CustomMultilineInputText({
     super.key,
-    TextEditingController? controller,
+    super.controller,
+    super.readOnly,
     String? hint,
-    FocusNode? focusNode,
-    Color? borderColor,
+    super.focusNode,
+    super.borderColor = null,
     Widget? prefixIcon, // ✅ optional
-    double height = 120,
-    Function(String)? onChanged,
-    FormFieldValidator<String>? validator,
+    double super.height = 120,
+    super.onChanged,
+    super.validator,
   }) : super(
-    controller: controller,
     hintText: hint,
-    height: height,
     maxLines: 5,
-    focusNode: focusNode,
-    borderColor: borderColor,
     keyBoardType: TextInputType.multiline,
-    prefixWidget: prefixIcon, // ✅ optional, no default here
-    onChanged: onChanged,
-    validator: validator,
+    prefixWidget: prefixIcon,
   );
 }
 

@@ -5,12 +5,13 @@ import '../project_setup.dart';
 /// -------------------------
 /// List Widget
 /// -------------------------
-class ListWidget extends StatelessWidget {
+class CustomListWidget extends StatelessWidget {
   final bool separator;
   final bool shrinkWrap;
   final int itemCount;
   final ScrollPhysics? scrollPhysics;
   final Widget Function(BuildContext, int) itemBuilder;
+  final Widget? emptyWidget;
   final ScrollController? scrollController;
   final bool? reverse;
   final Axis? scrollDirection;
@@ -20,7 +21,7 @@ class ListWidget extends StatelessWidget {
   final Color? iconColor;
   final Color? textColor;
 
-  const ListWidget({
+  const CustomListWidget({
     super.key,
     this.separator = false,
     this.shrinkWrap = true,
@@ -28,6 +29,7 @@ class ListWidget extends StatelessWidget {
     this.scrollPhysics,
     this.scrollDirection,
     required this.itemBuilder,
+    this.emptyWidget,
     this.scrollController,
     this.reverse,
     this.padding,
@@ -40,7 +42,7 @@ class ListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (itemCount == 0) {
-      return const EmptyWidget(message: "No data found");
+      return emptyWidget ?? EmptyWidget(message: "No data found");
     }
 
     final totalCount = isLoadingMore ? itemCount + 1 : itemCount;
@@ -56,7 +58,7 @@ class ListWidget extends StatelessWidget {
       reverse: reverse ?? false,
       itemBuilder: (context, index) {
         if (isLoadingMore && index == itemCount) {
-          return const _LoaderFooter();
+          return const LoaderFooter();
         }
         return itemBuilder(context, index);
       },
@@ -71,7 +73,7 @@ class ListWidget extends StatelessWidget {
       reverse: reverse ?? false,
       itemBuilder: (context, index) {
         if (isLoadingMore && index == itemCount) {
-          return const _LoaderFooter();
+          return const LoaderFooter();
         }
         return itemBuilder(context, index);
       },
@@ -91,9 +93,10 @@ class ListWidget extends StatelessWidget {
 /// -------------------------
 /// Grid Widget (Responsive)
 /// -------------------------
-class GridWidget extends StatelessWidget {
+class CustomGridWidget extends StatelessWidget {
   final int itemCount;
   final Widget Function(BuildContext, int) itemBuilder;
+  final Widget? emptyWidget;
   final double childAspectRatio;
   final double crossAxisSpacing;
   final double mainAxisSpacing;
@@ -104,10 +107,11 @@ class GridWidget extends StatelessWidget {
   final bool shrinkWrap;
   final bool isLoadingMore; // 👈 new flag
 
-  const GridWidget({
+  const CustomGridWidget({
     super.key,
     required this.itemCount,
     required this.itemBuilder,
+    this.emptyWidget,
     this.childAspectRatio = 1,
     this.crossAxisSpacing = 8,
     this.mainAxisSpacing = 8,
@@ -122,7 +126,7 @@ class GridWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (itemCount == 0) {
-      return const EmptyWidget(message: "No data found");
+      return emptyWidget ?? EmptyWidget(message: "No data found");
     }
 
     final grid = GridView.builder(
@@ -157,8 +161,8 @@ class GridWidget extends StatelessWidget {
 /// -------------------------
 /// Loader Footer Widget
 /// -------------------------
-class _LoaderFooter extends StatelessWidget {
-  const _LoaderFooter();
+class LoaderFooter extends StatelessWidget {
+  const LoaderFooter({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -179,6 +183,7 @@ class EmptyWidget extends StatelessWidget {
   final IconData icon;
   final Color? iconColor;
   final Color? textColor;
+  final Widget? child;
 
   const EmptyWidget({
     super.key,
@@ -186,12 +191,13 @@ class EmptyWidget extends StatelessWidget {
     this.icon = Icons.inbox_outlined,
     this.iconColor = Colors.grey,
     this.textColor = Colors.grey,
+    this.child,
   });
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
+      child: child ?? Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, size: 48, color: iconColor),

@@ -42,7 +42,7 @@ class ApiRepository {
       fromJson: fromJson,
     );
     if (response.statusCode != 200 && response.statusCode != 201) {
-      PrintLogs.showErrorLogs("checking error ${response}");
+      PrintLogs.showErrorLogs("checking error $response");
       throw ApiErrorMessageException(response.error??"");
     }
     return response;
@@ -60,7 +60,7 @@ class ApiRepository {
       fromJson: fromJson,
     );
     if (response.statusCode != 200 && response.statusCode != 201) {
-      PrintLogs.showErrorLogs("checking error ${response}");
+      PrintLogs.showErrorLogs("checking error $response");
       throw ApiErrorMessageException(response.error??"");
     }
     return response;
@@ -79,7 +79,7 @@ class ApiRepository {
       fromJson: fromJson,
     );
     if (response.statusCode != 200 && response.statusCode != 201) {
-      PrintLogs.showErrorLogs("checking error ${response}");
+      PrintLogs.showErrorLogs("checking error $response");
       throw ApiErrorMessageException(response.error??"");
     }
     return response;
@@ -95,7 +95,7 @@ class ApiRepository {
       fromJson: fromJson,
     );
     if (response.statusCode != 200 && response.statusCode != 201) {
-      PrintLogs.showErrorLogs("checking error ${response}");
+      PrintLogs.showErrorLogs("checking error $response");
       throw ApiErrorMessageException(response.error??"");
     }
     return response;

@@ -1,5 +1,3 @@
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../project_setup.dart';
 
 
@@ -21,20 +19,20 @@ extension DimensionsExtension on num {
   /// Converts dp (density-independent pixels) to pixels.
   ///
   /// Example: `16.dp`
-  double get dp => ScreenUtil().setWidth(toDouble());
+  double get dP => ScreenUtil().setWidth(toDouble());
 
   /// Converts sp (scale-independent pixels) to pixels.
   ///
   /// Example: `16.sp`
-  double get sp => ScreenUtil().setSp(toDouble());
+  double get sP => ScreenUtil().setSp(toDouble());
 
   /// Calculates a percentage of the screen width.
   ///
   /// Example: `50.sw` (50% of screen width)
-  double get sw => ScreenUtil().screenWidth * (this / 100);
+  double get sW => ScreenUtil().screenWidth * (this / 100);
 
   /// Calculates a percentage of the screen height.
   ///
   /// Example: `30.sh` (30% of screen height)
-  double get sh => ScreenUtil().screenHeight * (this / 100);
+  double get sH => ScreenUtil().screenHeight * (this / 100);
 }
