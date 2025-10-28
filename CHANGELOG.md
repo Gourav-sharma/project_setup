@@ -50,3 +50,8 @@
 ## 0.0.14
 
 * Remove unused packages and make code more optimized and more flexible to custom use
+
+## 0.0.15
+
+* Correct naming for classes
+* Remove more unused packages
