@@ -55,3 +55,7 @@
 
 * Correct naming for classes
 * Remove more unused packages
+
+## 0.0.16
+
+* Update custom classes more dynamic and flexible

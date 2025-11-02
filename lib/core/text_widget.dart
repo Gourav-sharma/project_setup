@@ -11,6 +11,7 @@ class CustomTextWidget extends StatelessWidget {
   final VoidCallback? onTap;
   final TextDecoration? decoration;
   final String? fontFamily;
+  final double? height;
 
   const CustomTextWidget({
     super.key,
@@ -23,6 +24,7 @@ class CustomTextWidget extends StatelessWidget {
     this.onTap,
     this.decoration,
     this.fontFamily,
+    this.height,
   });
 
   @override
@@ -40,6 +42,7 @@ class CustomTextWidget extends StatelessWidget {
           fontWeight: fontWeight ?? FontWeight.normal,
           decoration: decoration,
           fontFamily: fontFamily,
+          height: height ?? 1.2,
         ),
       ),
     );
@@ -131,6 +134,7 @@ class CustomReadMoreTextWidget extends StatefulWidget {
   final int trimLines;
   final Color? textColor;
   final double fontSize;
+  final double? height;
   final FontWeight? fontWeight;
   final String? fontFamily;
 
@@ -140,6 +144,7 @@ class CustomReadMoreTextWidget extends StatefulWidget {
     this.trimLines = 2,
     this.textColor,
     this.fontSize = 16.0,
+    this.height,
     this.fontWeight,
     this.fontFamily,
   });

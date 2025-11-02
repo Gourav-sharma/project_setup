@@ -16,6 +16,8 @@ class CustomInputField extends StatelessWidget {
   final String? helperText;
   final Color? borderColor;
   final Color? errorBorderColor;
+  final Color? fillColor;
+  final bool? filled;
   final Widget? prefixWidget;
   final Widget? suffixWidget;
   final VoidCallback? suffixTap;
@@ -39,6 +41,8 @@ class CustomInputField extends StatelessWidget {
     this.helperText,
     this.borderColor = Colors.grey,
     this.errorBorderColor = Colors.red ,
+    this.fillColor,
+    this.filled,
     this.prefixWidget,
     this.suffixWidget,
     this.suffixTap,
@@ -70,6 +74,8 @@ class CustomInputField extends StatelessWidget {
           labelText: labelText,
           errorText: errorText,
           helperText: helperText,
+          fillColor: fillColor,
+          filled: filled,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius),
             borderSide: BorderSide(color: borderColor  ?? Colors.grey),

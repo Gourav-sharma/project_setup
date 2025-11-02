@@ -8,6 +8,10 @@ class CustomBottomBar extends StatelessWidget {
   final Color? backgroundColor;
   final Color? selectedItemColor;
   final Color? unselectedItemColor;
+  final double? fontSize;
+  final double? height;
+  final double? width;
+  final double? elevation;
 
   const CustomBottomBar({
     super.key,
@@ -18,31 +22,40 @@ class CustomBottomBar extends StatelessWidget {
     this.backgroundColor,
     this.selectedItemColor,
     this.unselectedItemColor,
+    this.fontSize,
+    this.height,
+    this.width,
+    this.elevation,
   });
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      items: items
-          .map(
-            (item) => BottomNavigationBarItem(
-          icon: item.iconWidget ?? const SizedBox.shrink(),
-          activeIcon: item.activeIconWidget ?? item.iconWidget ?? const SizedBox.shrink(),
-          label: item.label ?? "",
-          tooltip: item.tooltip,
-        ),
-      )
-          .toList(),
-      currentIndex: currentIndex,
-      onTap: onBottomTapped,
-      type: BottomNavigationBarType.fixed,
-      selectedItemColor: selectedItemColor ?? Colors.white,
-      unselectedItemColor: unselectedItemColor ?? Colors.grey,
-      selectedFontSize: showLabel ? 15.sp : 0,
-      unselectedFontSize: showLabel ? 15.sp : 0,
-      showSelectedLabels: showLabel,
-      showUnselectedLabels: showLabel,
-      backgroundColor: backgroundColor ?? Colors.white,
+    return SizedBox(
+      width:width?? double.infinity,
+      height: height ,
+      child: BottomNavigationBar(
+        elevation: elevation ?? 0,
+        items: items
+            .map(
+              (item) => BottomNavigationBarItem(
+            icon: item.iconWidget ?? const SizedBox.shrink(),
+            activeIcon: item.activeIconWidget ?? item.iconWidget ?? const SizedBox.shrink(),
+            label: item.label ?? "",
+            tooltip: item.tooltip,
+          ),
+        )
+            .toList(),
+        currentIndex: currentIndex,
+        onTap: onBottomTapped,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: selectedItemColor ?? Colors.white,
+        unselectedItemColor: unselectedItemColor ?? Colors.grey,
+        selectedFontSize: showLabel ? fontSize ?? 15.sp : 0,
+        unselectedFontSize: showLabel ? fontSize ?? 15.sp : 0,
+        showSelectedLabels: showLabel,
+        showUnselectedLabels: showLabel,
+        backgroundColor: backgroundColor ?? Colors.transparent,
+      ),
     );
   }
 }

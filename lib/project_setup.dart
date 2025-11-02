@@ -41,6 +41,7 @@ export 'core/custom_list_widget.dart';
 export 'app_utils/common_util_methods.dart';
 export 'app_utils/print_logs.dart';
 export 'app_utils/multipart_request.dart';
+export 'core/custom_swicth_button.dart';
 
 //style
 export 'style_theme/app_dimension.dart';

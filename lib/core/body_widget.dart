@@ -158,10 +158,8 @@ class CustomBodyWidget extends StatelessWidget {
                   child: child ?? Container(),
                 ),
                 if (showBottomBar && bottomBarWidget != null)
-                  Positioned(
-                    bottom: 0,
-                    left: 16,
-                    right: 16,
+                  Align(
+                    alignment: Alignment.bottomCenter,
                     child: bottomBarWidget!,
                   ),
               ],
