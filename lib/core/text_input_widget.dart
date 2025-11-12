@@ -115,6 +115,8 @@ class CustomInputWithIcon extends CustomInputField {
     required Widget icon,
     String? hint,
     String? label,
+    bool? filled,
+    Color? fillColor,
     super.focusNode,
     super.borderColor = null,
     super.onChanged,
@@ -123,6 +125,8 @@ class CustomInputWithIcon extends CustomInputField {
     prefixWidget: icon,
     hintText: hint,
     labelText: label,
+    filled: filled,
+    fillColor: fillColor,
   );
 }
 
@@ -133,6 +137,8 @@ class CustomInputWithoutIcon extends CustomInputField {
     super.controller,
     String? hint,
     String? label,
+    bool? filled,
+    Color? fillColor,
     super.focusNode,
     super.borderColor = null,
     super.onChanged,
@@ -140,6 +146,8 @@ class CustomInputWithoutIcon extends CustomInputField {
   }) : super(
     hintText: hint,
     labelText: label,
+    filled: filled,
+    fillColor: fillColor,
   );
 }
 
@@ -152,6 +160,8 @@ class CustomEmailInputText extends CustomInputField {
     super.controller,
     super.readOnly,
     String? hint = "Enter email",
+    bool? filled,
+    Color? fillColor,
     super.focusNode,
     super.borderColor = null,
     Widget? prefixIcon, // ✅ new optional param
@@ -161,6 +171,8 @@ class CustomEmailInputText extends CustomInputField {
     hintText: hint,
     keyBoardType: TextInputType.emailAddress,
     prefixWidget: prefixIcon ?? const Icon(Icons.email_outlined),
+    filled: filled,
+    fillColor: fillColor,
   );
 }
 
@@ -172,6 +184,8 @@ class CustomPasswordInputText extends StatefulWidget {
   final String? hint;
   final String? label;
   final FocusNode? focusNode;
+  final bool? filled;
+  final Color? fillColor;
   final Color? borderColor;
   final Widget? prefixIcon; // ✅ optional
   final Function(String)? onChanged;
@@ -184,6 +198,8 @@ class CustomPasswordInputText extends StatefulWidget {
     this.label,
     this.focusNode,
     this.borderColor,
+    this.filled,
+    this.fillColor,
     this.prefixIcon,
     this.onChanged,
     this.validator,
@@ -207,6 +223,8 @@ class _CustomPasswordInputTextState extends State<CustomPasswordInputText> {
       onChanged: widget.onChanged,
       validator: widget.validator,
       obscureText: _obscure,
+      filled: widget.filled,
+      fillColor: widget.fillColor,
       prefixWidget: widget.prefixIcon ?? const Icon(Icons.lock_outline), // ✅ default
       suffixWidget: Icon(_obscure ? Icons.visibility_off : Icons.visibility),
       suffixTap: () => setState(() => _obscure = !_obscure),
@@ -221,6 +239,8 @@ class CustomPhoneInputText extends CustomInputField {
     super.controller,
     super.readOnly,
     String? hint = "Enter phone number",
+    bool? filled,
+    Color? fillColor,
     super.focusNode,
     super.borderColor = null,
     Widget? prefixIcon, // ✅ optional
@@ -230,6 +250,8 @@ class CustomPhoneInputText extends CustomInputField {
     hintText: hint,
     keyBoardType: TextInputType.phone,
     prefixWidget: prefixIcon ?? const Icon(Icons.phone),
+    filled: filled,
+    fillColor: fillColor,
   );
 }
 
@@ -240,6 +262,8 @@ class CustomMultilineInputText extends CustomInputField {
     super.controller,
     super.readOnly,
     String? hint,
+    bool? filled,
+    Color? fillColor,
     super.focusNode,
     super.borderColor = null,
     Widget? prefixIcon, // ✅ optional
@@ -251,6 +275,8 @@ class CustomMultilineInputText extends CustomInputField {
     maxLines: 5,
     keyBoardType: TextInputType.multiline,
     prefixWidget: prefixIcon,
+    filled: filled,
+    fillColor: fillColor,
   );
 }
 

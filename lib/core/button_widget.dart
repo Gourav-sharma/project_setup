@@ -40,6 +40,8 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: width,
+      height: height,
       margin: margin,
       child: ElevatedButton(
         onPressed: isLoading ? null : onTap,
@@ -55,7 +57,7 @@ class CustomButton extends StatelessWidget {
                 : BorderSide.none,
           ),
           elevation: elevation ?? 0.0,
-          fixedSize: Size(width ?? 100, height ?? 40),
+          //fixedSize: Size(width ?? 100, height ?? 40),
           padding: padding,
         ),
         child: isLoading

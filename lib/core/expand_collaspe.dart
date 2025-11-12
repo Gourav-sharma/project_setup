@@ -1,7 +1,8 @@
 import '../project_setup.dart';
 
 class CustomExpandCollapseWidget extends StatelessWidget {
-  final Widget child;
+  final Widget header;            // always visible (question)
+  final Widget child;// collapsible content (answer)
   final bool? isExpanded;
   final VoidCallback? onToggle;
   final double? width;
@@ -10,6 +11,7 @@ class CustomExpandCollapseWidget extends StatelessWidget {
 
   const CustomExpandCollapseWidget({
     super.key,
+    required this.header,
     required this.child,
     this.isExpanded,
     this.onToggle,
@@ -20,38 +22,40 @@ class CustomExpandCollapseWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool expanded = isExpanded ?? false;
+    final bool expanded = isExpanded ?? false;
+
     return Container(
       width: width,
       height: height,
       margin: margin,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           GestureDetector(
             onTap: onToggle,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
-                  expanded
-                      ? Icons.remove_circle
-                      : Icons.add_circle,
-                  size: 20,
-                ),
-                SizedBox(width: 8),
-                Text(
-                  expanded ? "Collapse" : "Expand",
-                  style: TextStyle(fontSize: 16),
+                // header widget (question)
+                Expanded(
+                    child:header
                 ),
               ],
             ),
           ),
+
+          // spacing
           SizedBox(height: 8),
+
+          // The answer part that toggles
           AnimatedCrossFade(
-            firstChild: Container(),
+            firstChild: SizedBox.shrink(),
             secondChild: child,
             crossFadeState:
             expanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-            duration: Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 250),
+            firstCurve: Curves.easeOut,
+            secondCurve: Curves.easeIn,
           ),
         ],
       ),

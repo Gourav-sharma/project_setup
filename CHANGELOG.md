@@ -59,3 +59,7 @@
 ## 0.0.16
 
 * Update custom classes more dynamic and flexible
+
+## 0.0.17
+
+* Update and fix some common issues in custom widgets

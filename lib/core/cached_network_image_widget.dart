@@ -12,7 +12,8 @@ class CustomNetworkImage extends StatelessWidget {
   final BoxFit? fit;
   final BorderRadiusGeometry? borderRadius;
   final Color? placeHolderColor;
-  final String? placeHolder;
+  final Color? borderColor;
+  final Widget? placeHolder;
 
   const CustomNetworkImage({
     super.key,
@@ -27,6 +28,7 @@ class CustomNetworkImage extends StatelessWidget {
     this.borderRadius,
     this.fit,
     this.placeHolderColor,
+    this.borderColor,
     this.placeHolder,
   });
 
@@ -39,19 +41,13 @@ class CustomNetworkImage extends StatelessWidget {
         height: height ?? MediaQuery.of(context).size.width / 1.8,
         decoration: BoxDecoration(
           borderRadius: borderRadius ?? BorderRadius.circular(radius ?? 12),
-          border: Border.all(
-            color: placeHolderColor ?? Colors.grey.shade300,
-            width: 1,
-          ),
+          border: border == true
+              ? Border.all(color: borderColor?? Colors.black, width: 1)
+              : null,
         ),
         child: Center(
-          child: CustomSvgWidget(
-            assetName: placeHolder ?? "",
-            height: placeHolderSize,
-            width: placeHolderSize,
-            fit: fit ?? BoxFit.contain,
-            color: placeHolderColor,
-          ),
+          child: placeHolder ?? Icon(Icons.image_outlined,
+          size: placeHolderSize,),
         ),
       ),
     );
@@ -74,7 +70,7 @@ class CustomNetworkImage extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: borderRadius ?? BorderRadius.circular(radius ?? 12),
           border: border == true
-              ? Border.all(color: Colors.white, width: 1)
+              ? Border.all(color: borderColor ?? Colors.black, width: 1)
               : null,
           image: DecorationImage(
             image: imageProvider,
@@ -91,7 +87,9 @@ class CustomNetworkImage extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: borderRadius ?? BorderRadius.circular(radius ?? 12),
           color: Colors.black.withAlpha(30),
-          border: Border.all(color: Colors.blueAccent, width: .5),
+          border: border == true
+              ? Border.all(color: borderColor?? Colors.black, width: 1)
+              : null,
         ),
         child: Center(
           child: SizedBox(

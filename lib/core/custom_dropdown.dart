@@ -6,6 +6,7 @@ class CustomDropdown<T> extends StatefulWidget {
   final String hint;
   final double borderRadius;
   final Color borderColor;
+  final Color backgroundColor;
   final IconData icon;
   final ValueChanged<T?> onChanged;
 
@@ -25,6 +26,7 @@ class CustomDropdown<T> extends StatefulWidget {
     this.hint = "Select Item",
     this.borderRadius = 12,
     this.borderColor = Colors.grey,
+    this.backgroundColor = Colors.white,
     this.icon = Icons.arrow_drop_down,
   });
 
@@ -41,6 +43,62 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
   void initState() {
     super.initState();
     selectedValue = widget.value;
+  }
+
+  @override
+  void didUpdateWidget(covariant CustomDropdown<T> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    // If parent changed the provided value, update selectedValue
+    if (widget.value != oldWidget.value) {
+      setState(() {
+        selectedValue = _findMatching(widget.value);
+      });
+      return;
+    }
+
+    // If items list changed, try to re-resolve selectedValue to an instance from new items
+    if (widget.items != oldWidget.items) {
+      setState(() {
+        selectedValue = _findMatching(selectedValue);
+      });
+    }
+  }
+
+  /// Try to find an item from widget.items that matches [val].
+  /// Matching strategy (in order):
+  /// 1. identical / ==
+  /// 2. itemLabelBuilder(item) == itemLabelBuilder(val) (if builder provided)
+  /// 3. toString() equality
+  T? _findMatching(T? val) {
+    if (val == null) return null;
+
+    // First try direct equality (works for primitives or if == is overridden)
+    for (final item in widget.items) {
+      if (item == val) return item;
+    }
+
+    // If an itemLabelBuilder is provided, compare labels
+    if (widget.itemLabelBuilder != null) {
+      final targetLabel = widget.itemLabelBuilder!(val);
+      for (final item in widget.items) {
+        try {
+          if (widget.itemLabelBuilder!(item) == targetLabel) return item;
+        } catch (_) {
+          // ignore and continue if builder fails for some reason
+        }
+      }
+    }
+
+    // Fallback to comparing toString()
+    final targetStr = val.toString();
+    for (final item in widget.items) {
+      if (item.toString() == targetStr) return item;
+    }
+
+    // If nothing matches, return the provided value (so text will still show),
+    // but prefer returning an item from list when possible.
+    return val;
   }
 
   void _toggleDropdown() {
@@ -119,6 +177,7 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
           decoration: BoxDecoration(
+            color: widget.backgroundColor,
             border: Border.all(color: widget.borderColor),
             borderRadius: BorderRadius.circular(widget.borderRadius),
           ),
