@@ -4,6 +4,7 @@ class CustomContainer extends StatelessWidget {
   final double? width;
   final double? height;
   final VoidCallback? onTap;
+  final GestureTapDownCallback? onTapDown;
   final Widget? child;
   final Color? color;
   final EdgeInsetsGeometry? padding;
@@ -16,6 +17,7 @@ class CustomContainer extends StatelessWidget {
     this.width,
     this.height,
     this.onTap,
+    this.onTapDown,
     this.child,
     this.color,
     this.padding,
@@ -28,6 +30,7 @@ class CustomContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
+      onTapDown: onTapDown,
       child: Container(
         width: width,
         height: height,

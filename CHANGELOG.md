@@ -63,3 +63,6 @@
 ## 0.0.17
 
 * Update and fix some common issues in custom widgets
+
+## 0.0.18
+* Add highlighted feature in custom container on touch
